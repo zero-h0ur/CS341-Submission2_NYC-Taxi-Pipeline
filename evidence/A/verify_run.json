@@ -1,0 +1,262 @@
+{
+  "run_id": "20261115T154716822787Z_e314c7bf",
+  "checked_at": "2026-11-15T15:47:39+00:00",
+  "status": "PASSED",
+  "passed": true,
+  "window": {
+    "start": "2024-01",
+    "end": "2024-03",
+    "services": [
+      "yellow",
+      "green",
+      "fhv",
+      "fhvhv"
+    ]
+  },
+  "checks": {
+    "curated_schema_match": true,
+    "all_batches_accepted": true,
+    "raw_reconciled_every_batch": true,
+    "marker_counts_match": true,
+    "source_fingerprints_current": true,
+    "monthly_keys_complete_and_unique": true,
+    "curated_matches_trusted_per_batch": true,
+    "borough_totals_match_monthly": true,
+    "borough_keys_unique": true,
+    "counts_nonnegative": true,
+    "reports_published": true
+  },
+  "baseline": {
+    "status": "NOT_APPLICABLE",
+    "reason": "Requested scope differs from S1 baseline."
+  },
+  "batches": [
+    {
+      "batch_id": "yellow_2024-01",
+      "service_type": "yellow",
+      "pickup_month": "2024-01",
+      "raw_rows": 2964624,
+      "valid_rows": 2964550,
+      "rejected_rows": 74,
+      "processed_run_id": "20261115T154716822787Z_e314c7bf",
+      "trusted_file": "data/trusted/trips/service_type=yellow/pickup_month=2024-01/part-0.parquet",
+      "source_sha256": "c4d59da7bbc8abaeeeb1727947ee93d9891a71acb42854bd80db1571b2030510",
+      "trusted_sha256": "21a248d40e17aa26a7704d4c54b833c099210efe63851453b327c06a040d7613",
+      "raw_reconciled": true,
+      "marker_counts_match": true,
+      "source_fingerprints_match": true
+    },
+    {
+      "batch_id": "green_2024-01",
+      "service_type": "green",
+      "pickup_month": "2024-01",
+      "raw_rows": 56551,
+      "valid_rows": 56549,
+      "rejected_rows": 2,
+      "processed_run_id": "20261115T154716822787Z_e314c7bf",
+      "trusted_file": "data/trusted/trips/service_type=green/pickup_month=2024-01/part-0.parquet",
+      "source_sha256": "1512a953bed564ac68dcb622827424dfb4f68ad93c2a4572e50ef6ab0b09c1ad",
+      "trusted_sha256": "d0359c92567fdfcccfb4dbd98942b77b5cd735d59499792115aac236915e8869",
+      "raw_reconciled": true,
+      "marker_counts_match": true,
+      "source_fingerprints_match": true
+    },
+    {
+      "batch_id": "fhv_2024-01",
+      "service_type": "fhv",
+      "pickup_month": "2024-01",
+      "raw_rows": 1290116,
+      "valid_rows": 1290116,
+      "rejected_rows": 0,
+      "processed_run_id": "20261115T154716822787Z_e314c7bf",
+      "trusted_file": "data/trusted/trips/service_type=fhv/pickup_month=2024-01/part-0.parquet",
+      "source_sha256": "86077917190bda275aa3c21e192e14c9191dd92df1e719704e869f2f02d72fed",
+      "trusted_sha256": "44fef5b4d8c9ace97b7c249b623ef8367b3ffc8f8c1cb34b73211bc5d3118d07",
+      "raw_reconciled": true,
+      "marker_counts_match": true,
+      "source_fingerprints_match": true
+    },
+    {
+      "batch_id": "fhvhv_2024-01",
+      "service_type": "fhvhv",
+      "pickup_month": "2024-01",
+      "raw_rows": 19663930,
+      "valid_rows": 19663930,
+      "rejected_rows": 0,
+      "processed_run_id": "20261115T154716822787Z_e314c7bf",
+      "trusted_file": "data/trusted/trips/service_type=fhvhv/pickup_month=2024-01/part-0.parquet",
+      "source_sha256": "9897de352aa52cea36b70348cc6721b8d4494327ce39c85f0dba83d86ecaa098",
+      "trusted_sha256": "0265b901513856f4dea392385baa342bb9cff861cde3c98d39dbff8d2442d1cd",
+      "raw_reconciled": true,
+      "marker_counts_match": true,
+      "source_fingerprints_match": true
+    },
+    {
+      "batch_id": "yellow_2024-02",
+      "service_type": "yellow",
+      "pickup_month": "2024-02",
+      "raw_rows": 3007526,
+      "valid_rows": 3007504,
+      "rejected_rows": 22,
+      "processed_run_id": "20261115T154716822787Z_e314c7bf",
+      "trusted_file": "data/trusted/trips/service_type=yellow/pickup_month=2024-02/part-0.parquet",
+      "source_sha256": "c76c43c18c6c6664080dd920baab4928988d5786a6b65980792ca7cd796f9f20",
+      "trusted_sha256": "4fa9fdc310950611b402499228552584c44a2fb19220472dca5c868009d9e57f",
+      "raw_reconciled": true,
+      "marker_counts_match": true,
+      "source_fingerprints_match": true
+    },
+    {
+      "batch_id": "green_2024-02",
+      "service_type": "green",
+      "pickup_month": "2024-02",
+      "raw_rows": 53577,
+      "valid_rows": 53571,
+      "rejected_rows": 6,
+      "processed_run_id": "20261115T154716822787Z_e314c7bf",
+      "trusted_file": "data/trusted/trips/service_type=green/pickup_month=2024-02/part-0.parquet",
+      "source_sha256": "cb7eb405ee7e795c9fd6b8ad1b291f46f4e0a1cd60a57067b0aaca2420e8bc5d",
+      "trusted_sha256": "135aefd761820744cae37e773bf2e5f79bcb8e10ffd630befe388ed23a15c82a",
+      "raw_reconciled": true,
+      "marker_counts_match": true,
+      "source_fingerprints_match": true
+    },
+    {
+      "batch_id": "fhv_2024-02",
+      "service_type": "fhv",
+      "pickup_month": "2024-02",
+      "raw_rows": 1176093,
+      "valid_rows": 1176093,
+      "rejected_rows": 0,
+      "processed_run_id": "20261115T154716822787Z_e314c7bf",
+      "trusted_file": "data/trusted/trips/service_type=fhv/pickup_month=2024-02/part-0.parquet",
+      "source_sha256": "6ba42a0308575fec29cd9329b4103198df166be4343c51bc2f01a52be2dd56d2",
+      "trusted_sha256": "e1f9ce3e53905facb7d93b85b4ea3e5b3dcd7b8bf672f11acd3e187157d917aa",
+      "raw_reconciled": true,
+      "marker_counts_match": true,
+      "source_fingerprints_match": true
+    },
+    {
+      "batch_id": "fhvhv_2024-02",
+      "service_type": "fhvhv",
+      "pickup_month": "2024-02",
+      "raw_rows": 19359148,
+      "valid_rows": 19359148,
+      "rejected_rows": 0,
+      "processed_run_id": "20261115T154716822787Z_e314c7bf",
+      "trusted_file": "data/trusted/trips/service_type=fhvhv/pickup_month=2024-02/part-0.parquet",
+      "source_sha256": "54bafa7bcf3f06e7833fcbccf7ef158eb793a72ee1c4bb8bf080e56ae71a15d6",
+      "trusted_sha256": "5eb52d4726419915edd7ead95ff6290cd991ef91b3e210f3571b24fbc7fa61e7",
+      "raw_reconciled": true,
+      "marker_counts_match": true,
+      "source_fingerprints_match": true
+    },
+    {
+      "batch_id": "yellow_2024-03",
+      "service_type": "yellow",
+      "pickup_month": "2024-03",
+      "raw_rows": 3582628,
+      "valid_rows": 3582488,
+      "rejected_rows": 140,
+      "processed_run_id": "20261115T154716822787Z_e314c7bf",
+      "trusted_file": "data/trusted/trips/service_type=yellow/pickup_month=2024-03/part-0.parquet",
+      "source_sha256": "2d4cdc8fb96726cdd3803b13b02d2e61e71d45720aff0ebc693a8bdd1f249823",
+      "trusted_sha256": "3c0751ae6547b3f1a05b91a982e843645c538f488c77bf15b7e5fee74a685ed8",
+      "raw_reconciled": true,
+      "marker_counts_match": true,
+      "source_fingerprints_match": true
+    },
+    {
+      "batch_id": "green_2024-03",
+      "service_type": "green",
+      "pickup_month": "2024-03",
+      "raw_rows": 57457,
+      "valid_rows": 57447,
+      "rejected_rows": 10,
+      "processed_run_id": "20261115T154716822787Z_e314c7bf",
+      "trusted_file": "data/trusted/trips/service_type=green/pickup_month=2024-03/part-0.parquet",
+      "source_sha256": "43dedd66dd556acfc38da679a174b6adc32e01dd6dccad14bdfdf1521a14abed",
+      "trusted_sha256": "7142bcb4f0cb1a2bdfbbae6c9d452fd35e2f36f3307f3bc4e7e330e6f3a19c90",
+      "raw_reconciled": true,
+      "marker_counts_match": true,
+      "source_fingerprints_match": true
+    },
+    {
+      "batch_id": "fhv_2024-03",
+      "service_type": "fhv",
+      "pickup_month": "2024-03",
+      "raw_rows": 1469352,
+      "valid_rows": 1469352,
+      "rejected_rows": 0,
+      "processed_run_id": "20261115T154716822787Z_e314c7bf",
+      "trusted_file": "data/trusted/trips/service_type=fhv/pickup_month=2024-03/part-0.parquet",
+      "source_sha256": "ff25612dbc86022d147e1783e1f677be13541c265b0290df1fdeeb1ce2fad869",
+      "trusted_sha256": "0a2245216c97e70786df433482faa3ece0c99a63f0833346111a9104ed30b79a",
+      "raw_reconciled": true,
+      "marker_counts_match": true,
+      "source_fingerprints_match": true
+    },
+    {
+      "batch_id": "fhvhv_2024-03",
+      "service_type": "fhvhv",
+      "pickup_month": "2024-03",
+      "raw_rows": 21280788,
+      "valid_rows": 21280788,
+      "rejected_rows": 0,
+      "processed_run_id": "20261115T154716822787Z_e314c7bf",
+      "trusted_file": "data/trusted/trips/service_type=fhvhv/pickup_month=2024-03/part-0.parquet",
+      "source_sha256": "ff25b93f890f889637963b749d0839ec5a15f075d23ea5297b3312ed9a10d6d9",
+      "trusted_sha256": "80dffdb6c5d6e6a13126a3e7957d15e34daa0e316f811843fea020a867cb179f",
+      "raw_reconciled": true,
+      "marker_counts_match": true,
+      "source_fingerprints_match": true
+    }
+  ],
+  "totals": {
+    "raw_rows": 73961790,
+    "valid_rows": 73961536,
+    "rejected_rows": 254,
+    "curated_rows": 73961536,
+    "borough_rows": 73961536
+  },
+  "valid_trips_by_service": {
+    "fhv": 3935561,
+    "fhvhv": 60303866,
+    "green": 167567,
+    "yellow": 9554542
+  },
+  "artifacts": {
+    "data/curated/monthly_trip_counts.parquet": {
+      "sha256": "29e947377d3a604cde865f51db55001c9d90591beca46e42e70a4e63806e05c3",
+      "size": 624
+    },
+    "data/curated/trips_by_borough.parquet": {
+      "sha256": "8275ea39b51768ebcb25d5b294208f91973940d25359e1d67fd7f009e11899f7",
+      "size": 1381
+    },
+    "outputs/monthly_trip_counts.csv": {
+      "sha256": "765c5ec9c163c6897d3d214a75db3c695df63afd585a96e834107dc2fd33e1e3",
+      "size": 300
+    },
+    "outputs/trips_by_borough.csv": {
+      "sha256": "6fe7948c25bb010f8e617fa9d2a72540e64ea25c26e9d9a9615b97c103db78d3",
+      "size": 2535
+    },
+    "outputs/service_summary.csv": {
+      "sha256": "e4f3f45fedc7cc82e9774e2102cd474f7532232d35c222d4b6738bd70fabc99a",
+      "size": 230
+    },
+    "outputs/sample_trusted_trips.csv": {
+      "sha256": "9c421cd42de3895feead4f0639ab2625572569a19bb0f1eb2d3e476a84adc16f",
+      "size": 179151
+    },
+    "outputs/trips_by_service.png": {
+      "sha256": "b27c5c12cbe892f101f5af89d922b795dd7a36ed9c9612e04e477c33e18463e3",
+      "size": 44462
+    },
+    "outputs/answer.md": {
+      "sha256": "236c05ffc53a3bacc57bc2cd823079e0a89f40c02c41b66a2e8d3d95b5f09701",
+      "size": 1623
+    }
+  }
+}

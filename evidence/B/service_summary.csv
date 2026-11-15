@@ -1,0 +1,5 @@
+service_type,total_trips,months,service_name,share_percent
+fhvhv,120864668,6,High Volume FHV (FHVHV),80.762035
+yellow,20331644,6,Yellow Taxi,13.585649
+fhv,8119228,6,For-Hire Vehicle (FHV),5.425286
+green,339763,6,Green Taxi,0.227030

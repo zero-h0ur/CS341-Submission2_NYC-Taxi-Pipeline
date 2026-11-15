@@ -1,0 +1,93 @@
+service_type,pickup_month,pu_borough,number_of_trips
+fhv,2024-01,Bronx,31796
+fhv,2024-01,Brooklyn,69400
+fhv,2024-01,EWR,699
+fhv,2024-01,Manhattan,35572
+fhv,2024-01,N/A,1862
+fhv,2024-01,Queens,83195
+fhv,2024-01,Staten Island,52289
+fhv,2024-01,Unknown,1015303
+fhvhv,2024-01,Bronx,2368692
+fhvhv,2024-01,Brooklyn,5108466
+fhvhv,2024-01,EWR,1
+fhvhv,2024-01,Manhattan,7863672
+fhvhv,2024-01,N/A,765
+fhvhv,2024-01,Queens,4040618
+fhvhv,2024-01,Staten Island,281716
+green,2024-01,Bronx,870
+green,2024-01,Brooklyn,7747
+green,2024-01,EWR,3
+green,2024-01,Manhattan,32846
+green,2024-01,N/A,29
+green,2024-01,Queens,14937
+green,2024-01,Staten Island,5
+green,2024-01,Unknown,112
+yellow,2024-01,Bronx,6905
+yellow,2024-01,Brooklyn,25255
+yellow,2024-01,EWR,295
+yellow,2024-01,Manhattan,2646932
+yellow,2024-01,N/A,1610
+yellow,2024-01,Queens,273121
+yellow,2024-01,Staten Island,72
+yellow,2024-01,Unknown,10360
+fhv,2024-02,Bronx,16192
+fhv,2024-02,Brooklyn,59408
+fhv,2024-02,EWR,649
+fhv,2024-02,Manhattan,28861
+fhv,2024-02,N/A,1819
+fhv,2024-02,Queens,58809
+fhv,2024-02,Staten Island,46513
+fhv,2024-02,Unknown,963842
+fhvhv,2024-02,Bronx,2400179
+fhvhv,2024-02,Brooklyn,5089710
+fhvhv,2024-02,EWR,1
+fhvhv,2024-02,Manhattan,7750155
+fhvhv,2024-02,N/A,737
+fhvhv,2024-02,Queens,3838843
+fhvhv,2024-02,Staten Island,279523
+green,2024-02,Bronx,729
+green,2024-02,Brooklyn,7625
+green,2024-02,EWR,2
+green,2024-02,Manhattan,31497
+green,2024-02,N/A,37
+green,2024-02,Queens,13556
+green,2024-02,Staten Island,2
+green,2024-02,Unknown,123
+yellow,2024-02,Bronx,6969
+yellow,2024-02,Brooklyn,28020
+yellow,2024-02,EWR,287
+yellow,2024-02,Manhattan,2710770
+yellow,2024-02,N/A,1433
+yellow,2024-02,Queens,250308
+yellow,2024-02,Staten Island,57
+yellow,2024-02,Unknown,9660
+fhv,2024-03,Bronx,21229
+fhv,2024-03,Brooklyn,67487
+fhv,2024-03,EWR,751
+fhv,2024-03,Manhattan,37833
+fhv,2024-03,N/A,1868
+fhv,2024-03,Queens,94323
+fhv,2024-03,Staten Island,54632
+fhv,2024-03,Unknown,1191229
+fhvhv,2024-03,Bronx,2683235
+fhvhv,2024-03,Brooklyn,5697558
+fhvhv,2024-03,Manhattan,8253734
+fhvhv,2024-03,N/A,796
+fhvhv,2024-03,Queens,4331205
+fhvhv,2024-03,Staten Island,314260
+green,2024-03,Bronx,774
+green,2024-03,Brooklyn,8275
+green,2024-03,EWR,1
+green,2024-03,Manhattan,32713
+green,2024-03,N/A,33
+green,2024-03,Queens,15515
+green,2024-03,Staten Island,3
+green,2024-03,Unknown,133
+yellow,2024-03,Bronx,11082
+yellow,2024-03,Brooklyn,43938
+yellow,2024-03,EWR,372
+yellow,2024-03,Manhattan,3198999
+yellow,2024-03,N/A,1984
+yellow,2024-03,Queens,314441
+yellow,2024-03,Staten Island,105
+yellow,2024-03,Unknown,11567

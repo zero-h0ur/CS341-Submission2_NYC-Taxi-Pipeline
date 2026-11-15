@@ -1,0 +1,176 @@
+2026-11-15T15:48:30Z INFO RunStarted run_id=20261115T154830027174Z_da9168bc mode=full force=False
+2026-11-15T15:48:30Z INFO DetectBatch source_id=taxi_zone_lookup
+2026-11-15T15:48:30Z INFO DetectBatch source_id=taxi_zone_lookup status=UNCHANGED size=12331
+2026-11-15T15:48:30Z INFO DetectBatch batch_id=yellow_2024-01
+2026-11-15T15:48:30Z INFO DetectBatch source_id=yellow_2024-01
+2026-11-15T15:48:30Z INFO DetectBatch source_id=yellow_2024-01 status=UNCHANGED size=49961641
+2026-11-15T15:48:30Z INFO CheckBatch batch_id=yellow_2024-01 force=False
+2026-11-15T15:48:30Z INFO BatchFinished batch_id=yellow_2024-01 status=ALREADY_PROCESSED duration_seconds=0.072
+2026-11-15T15:48:30Z INFO DetectBatch batch_id=green_2024-01
+2026-11-15T15:48:30Z INFO DetectBatch source_id=green_2024-01
+2026-11-15T15:48:30Z INFO DetectBatch source_id=green_2024-01 status=UNCHANGED size=1362284
+2026-11-15T15:48:30Z INFO CheckBatch batch_id=green_2024-01 force=False
+2026-11-15T15:48:30Z INFO BatchFinished batch_id=green_2024-01 status=ALREADY_PROCESSED duration_seconds=0.069
+2026-11-15T15:48:30Z INFO DetectBatch batch_id=fhv_2024-01
+2026-11-15T15:48:30Z INFO DetectBatch source_id=fhv_2024-01
+2026-11-15T15:48:30Z INFO DetectBatch source_id=fhv_2024-01 status=UNCHANGED size=15023585
+2026-11-15T15:48:30Z INFO CheckBatch batch_id=fhv_2024-01 force=False
+2026-11-15T15:48:30Z INFO BatchFinished batch_id=fhv_2024-01 status=ALREADY_PROCESSED duration_seconds=0.03
+2026-11-15T15:48:30Z INFO DetectBatch batch_id=fhvhv_2024-01
+2026-11-15T15:48:30Z INFO DetectBatch source_id=fhvhv_2024-01
+2026-11-15T15:48:30Z INFO DetectBatch source_id=fhvhv_2024-01 status=UNCHANGED size=472757547
+2026-11-15T15:48:30Z INFO CheckBatch batch_id=fhvhv_2024-01 force=False
+2026-11-15T15:48:30Z INFO BatchFinished batch_id=fhvhv_2024-01 status=ALREADY_PROCESSED duration_seconds=0.37
+2026-11-15T15:48:30Z INFO DetectBatch batch_id=yellow_2024-02
+2026-11-15T15:48:30Z INFO DetectBatch source_id=yellow_2024-02
+2026-11-15T15:48:30Z INFO DetectBatch source_id=yellow_2024-02 status=UNCHANGED size=50349284
+2026-11-15T15:48:30Z INFO CheckBatch batch_id=yellow_2024-02 force=False
+2026-11-15T15:48:30Z INFO BatchFinished batch_id=yellow_2024-02 status=ALREADY_PROCESSED duration_seconds=0.144
+2026-11-15T15:48:30Z INFO DetectBatch batch_id=green_2024-02
+2026-11-15T15:48:30Z INFO DetectBatch source_id=green_2024-02
+2026-11-15T15:48:30Z INFO DetectBatch source_id=green_2024-02 status=UNCHANGED size=1283805
+2026-11-15T15:48:30Z INFO CheckBatch batch_id=green_2024-02 force=False
+2026-11-15T15:48:30Z INFO BatchFinished batch_id=green_2024-02 status=ALREADY_PROCESSED duration_seconds=0.017
+2026-11-15T15:48:30Z INFO DetectBatch batch_id=fhv_2024-02
+2026-11-15T15:48:30Z INFO DetectBatch source_id=fhv_2024-02
+2026-11-15T15:48:30Z INFO DetectBatch source_id=fhv_2024-02 status=UNCHANGED size=13608941
+2026-11-15T15:48:30Z INFO CheckBatch batch_id=fhv_2024-02 force=False
+2026-11-15T15:48:30Z INFO BatchFinished batch_id=fhv_2024-02 status=ALREADY_PROCESSED duration_seconds=0.03
+2026-11-15T15:48:30Z INFO DetectBatch batch_id=fhvhv_2024-02
+2026-11-15T15:48:30Z INFO DetectBatch source_id=fhvhv_2024-02
+2026-11-15T15:48:31Z INFO DetectBatch source_id=fhvhv_2024-02 status=UNCHANGED size=462475428
+2026-11-15T15:48:31Z INFO CheckBatch batch_id=fhvhv_2024-02 force=False
+2026-11-15T15:48:31Z INFO BatchFinished batch_id=fhvhv_2024-02 status=ALREADY_PROCESSED duration_seconds=0.381
+2026-11-15T15:48:31Z INFO DetectBatch batch_id=yellow_2024-03
+2026-11-15T15:48:31Z INFO DetectBatch source_id=yellow_2024-03
+2026-11-15T15:48:31Z INFO DetectBatch source_id=yellow_2024-03 status=UNCHANGED size=60078280
+2026-11-15T15:48:31Z INFO CheckBatch batch_id=yellow_2024-03 force=False
+2026-11-15T15:48:31Z INFO BatchFinished batch_id=yellow_2024-03 status=ALREADY_PROCESSED duration_seconds=0.099
+2026-11-15T15:48:31Z INFO DetectBatch batch_id=green_2024-03
+2026-11-15T15:48:31Z INFO DetectBatch source_id=green_2024-03
+2026-11-15T15:48:31Z INFO DetectBatch source_id=green_2024-03 status=UNCHANGED size=1372372
+2026-11-15T15:48:31Z INFO CheckBatch batch_id=green_2024-03 force=False
+2026-11-15T15:48:31Z INFO BatchFinished batch_id=green_2024-03 status=ALREADY_PROCESSED duration_seconds=0.021
+2026-11-15T15:48:31Z INFO DetectBatch batch_id=fhv_2024-03
+2026-11-15T15:48:31Z INFO DetectBatch source_id=fhv_2024-03
+2026-11-15T15:48:31Z INFO DetectBatch source_id=fhv_2024-03 status=UNCHANGED size=16743352
+2026-11-15T15:48:31Z INFO CheckBatch batch_id=fhv_2024-03 force=False
+2026-11-15T15:48:31Z INFO BatchFinished batch_id=fhv_2024-03 status=ALREADY_PROCESSED duration_seconds=0.032
+2026-11-15T15:48:31Z INFO DetectBatch batch_id=fhvhv_2024-03
+2026-11-15T15:48:31Z INFO DetectBatch source_id=fhvhv_2024-03
+2026-11-15T15:48:31Z INFO DetectBatch source_id=fhvhv_2024-03 status=UNCHANGED size=507940560
+2026-11-15T15:48:31Z INFO CheckBatch batch_id=fhvhv_2024-03 force=False
+2026-11-15T15:48:31Z INFO BatchFinished batch_id=fhvhv_2024-03 status=ALREADY_PROCESSED duration_seconds=0.409
+2026-11-15T15:48:31Z INFO DetectBatch batch_id=yellow_2024-04
+2026-11-15T15:48:31Z INFO DetectBatch source_id=yellow_2024-04
+2026-11-15T15:48:31Z INFO DetectBatch source_id=yellow_2024-04 status=UNCHANGED size=59133625
+2026-11-15T15:48:31Z INFO CheckBatch batch_id=yellow_2024-04 force=False
+2026-11-15T15:48:31Z INFO ValidateBatch batch_id=yellow_2024-04
+2026-11-15T15:48:32Z INFO TransformBatch batch_id=yellow_2024-04
+2026-11-15T15:48:32Z INFO VerifyBatch batch_id=yellow_2024-04
+2026-11-15T15:48:33Z INFO PublishBatch batch_id=yellow_2024-04
+2026-11-15T15:48:33Z INFO BatchFinished batch_id=yellow_2024-04 status=PUBLISHED duration_seconds=1.254
+2026-11-15T15:48:33Z INFO DetectBatch batch_id=green_2024-04
+2026-11-15T15:48:33Z INFO DetectBatch source_id=green_2024-04
+2026-11-15T15:48:33Z INFO DetectBatch source_id=green_2024-04 status=UNCHANGED size=1346502
+2026-11-15T15:48:33Z INFO CheckBatch batch_id=green_2024-04 force=False
+2026-11-15T15:48:33Z INFO ValidateBatch batch_id=green_2024-04
+2026-11-15T15:48:33Z INFO TransformBatch batch_id=green_2024-04
+2026-11-15T15:48:33Z INFO VerifyBatch batch_id=green_2024-04
+2026-11-15T15:48:33Z INFO PublishBatch batch_id=green_2024-04
+2026-11-15T15:48:33Z INFO BatchFinished batch_id=green_2024-04 status=PUBLISHED duration_seconds=0.07
+2026-11-15T15:48:33Z INFO DetectBatch batch_id=fhv_2024-04
+2026-11-15T15:48:33Z INFO DetectBatch source_id=fhv_2024-04
+2026-11-15T15:48:33Z INFO DetectBatch source_id=fhv_2024-04 status=UNCHANGED size=16515459
+2026-11-15T15:48:33Z INFO CheckBatch batch_id=fhv_2024-04 force=False
+2026-11-15T15:48:33Z INFO ValidateBatch batch_id=fhv_2024-04
+2026-11-15T15:48:33Z INFO TransformBatch batch_id=fhv_2024-04
+2026-11-15T15:48:33Z INFO VerifyBatch batch_id=fhv_2024-04
+2026-11-15T15:48:33Z INFO PublishBatch batch_id=fhv_2024-04
+2026-11-15T15:48:33Z INFO BatchFinished batch_id=fhv_2024-04 status=PUBLISHED duration_seconds=0.545
+2026-11-15T15:48:33Z INFO DetectBatch batch_id=fhvhv_2024-04
+2026-11-15T15:48:33Z INFO DetectBatch source_id=fhvhv_2024-04
+2026-11-15T15:48:33Z INFO DetectBatch source_id=fhvhv_2024-04 status=UNCHANGED size=476115643
+2026-11-15T15:48:33Z INFO CheckBatch batch_id=fhvhv_2024-04 force=False
+2026-11-15T15:48:33Z INFO ValidateBatch batch_id=fhvhv_2024-04
+2026-11-15T15:48:34Z INFO TransformBatch batch_id=fhvhv_2024-04
+2026-11-15T15:48:37Z INFO VerifyBatch batch_id=fhvhv_2024-04
+2026-11-15T15:48:38Z INFO PublishBatch batch_id=fhvhv_2024-04
+2026-11-15T15:48:38Z INFO BatchFinished batch_id=fhvhv_2024-04 status=PUBLISHED duration_seconds=4.823
+2026-11-15T15:48:38Z INFO DetectBatch batch_id=yellow_2024-05
+2026-11-15T15:48:38Z INFO DetectBatch source_id=yellow_2024-05
+2026-11-15T15:48:38Z INFO DetectBatch source_id=yellow_2024-05 status=UNCHANGED size=62553128
+2026-11-15T15:48:38Z INFO CheckBatch batch_id=yellow_2024-05 force=False
+2026-11-15T15:48:38Z INFO ValidateBatch batch_id=yellow_2024-05
+2026-11-15T15:48:38Z INFO TransformBatch batch_id=yellow_2024-05
+2026-11-15T15:48:39Z INFO VerifyBatch batch_id=yellow_2024-05
+2026-11-15T15:48:39Z INFO PublishBatch batch_id=yellow_2024-05
+2026-11-15T15:48:39Z INFO BatchFinished batch_id=yellow_2024-05 status=PUBLISHED duration_seconds=1.141
+2026-11-15T15:48:39Z INFO DetectBatch batch_id=green_2024-05
+2026-11-15T15:48:39Z INFO DetectBatch source_id=green_2024-05
+2026-11-15T15:48:39Z INFO DetectBatch source_id=green_2024-05 status=UNCHANGED size=1453912
+2026-11-15T15:48:39Z INFO CheckBatch batch_id=green_2024-05 force=False
+2026-11-15T15:48:39Z INFO ValidateBatch batch_id=green_2024-05
+2026-11-15T15:48:39Z INFO TransformBatch batch_id=green_2024-05
+2026-11-15T15:48:39Z INFO VerifyBatch batch_id=green_2024-05
+2026-11-15T15:48:39Z INFO PublishBatch batch_id=green_2024-05
+2026-11-15T15:48:39Z INFO BatchFinished batch_id=green_2024-05 status=PUBLISHED duration_seconds=0.123
+2026-11-15T15:48:39Z INFO DetectBatch batch_id=fhv_2024-05
+2026-11-15T15:48:39Z INFO DetectBatch source_id=fhv_2024-05
+2026-11-15T15:48:39Z INFO DetectBatch source_id=fhv_2024-05 status=UNCHANGED size=15958984
+2026-11-15T15:48:39Z INFO CheckBatch batch_id=fhv_2024-05 force=False
+2026-11-15T15:48:39Z INFO ValidateBatch batch_id=fhv_2024-05
+2026-11-15T15:48:39Z INFO TransformBatch batch_id=fhv_2024-05
+2026-11-15T15:48:40Z INFO VerifyBatch batch_id=fhv_2024-05
+2026-11-15T15:48:40Z INFO PublishBatch batch_id=fhv_2024-05
+2026-11-15T15:48:40Z INFO BatchFinished batch_id=fhv_2024-05 status=PUBLISHED duration_seconds=0.576
+2026-11-15T15:48:40Z INFO DetectBatch batch_id=fhvhv_2024-05
+2026-11-15T15:48:40Z INFO DetectBatch source_id=fhvhv_2024-05
+2026-11-15T15:48:40Z INFO DetectBatch source_id=fhvhv_2024-05 status=UNCHANGED size=498575918
+2026-11-15T15:48:40Z INFO CheckBatch batch_id=fhvhv_2024-05 force=False
+2026-11-15T15:48:40Z INFO ValidateBatch batch_id=fhvhv_2024-05
+2026-11-15T15:48:41Z INFO TransformBatch batch_id=fhvhv_2024-05
+2026-11-15T15:48:44Z INFO VerifyBatch batch_id=fhvhv_2024-05
+2026-11-15T15:48:45Z INFO PublishBatch batch_id=fhvhv_2024-05
+2026-11-15T15:48:45Z INFO BatchFinished batch_id=fhvhv_2024-05 status=PUBLISHED duration_seconds=5.119
+2026-11-15T15:48:45Z INFO DetectBatch batch_id=yellow_2024-06
+2026-11-15T15:48:45Z INFO DetectBatch source_id=yellow_2024-06
+2026-11-15T15:48:45Z INFO DetectBatch source_id=yellow_2024-06 status=UNCHANGED size=59859922
+2026-11-15T15:48:45Z INFO CheckBatch batch_id=yellow_2024-06 force=False
+2026-11-15T15:48:45Z INFO ValidateBatch batch_id=yellow_2024-06
+2026-11-15T15:48:45Z INFO TransformBatch batch_id=yellow_2024-06
+2026-11-15T15:48:46Z INFO VerifyBatch batch_id=yellow_2024-06
+2026-11-15T15:48:46Z INFO PublishBatch batch_id=yellow_2024-06
+2026-11-15T15:48:46Z INFO BatchFinished batch_id=yellow_2024-06 status=PUBLISHED duration_seconds=1.302
+2026-11-15T15:48:46Z INFO DetectBatch batch_id=green_2024-06
+2026-11-15T15:48:46Z INFO DetectBatch source_id=green_2024-06
+2026-11-15T15:48:46Z INFO DetectBatch source_id=green_2024-06 status=UNCHANGED size=1326194
+2026-11-15T15:48:46Z INFO CheckBatch batch_id=green_2024-06 force=False
+2026-11-15T15:48:46Z INFO ValidateBatch batch_id=green_2024-06
+2026-11-15T15:48:46Z INFO TransformBatch batch_id=green_2024-06
+2026-11-15T15:48:46Z INFO VerifyBatch batch_id=green_2024-06
+2026-11-15T15:48:46Z INFO PublishBatch batch_id=green_2024-06
+2026-11-15T15:48:46Z INFO BatchFinished batch_id=green_2024-06 status=PUBLISHED duration_seconds=0.074
+2026-11-15T15:48:46Z INFO DetectBatch batch_id=fhv_2024-06
+2026-11-15T15:48:46Z INFO DetectBatch source_id=fhv_2024-06
+2026-11-15T15:48:46Z INFO DetectBatch source_id=fhv_2024-06 status=UNCHANGED size=16029924
+2026-11-15T15:48:46Z INFO CheckBatch batch_id=fhv_2024-06 force=False
+2026-11-15T15:48:46Z INFO ValidateBatch batch_id=fhv_2024-06
+2026-11-15T15:48:46Z INFO TransformBatch batch_id=fhv_2024-06
+2026-11-15T15:48:47Z INFO VerifyBatch batch_id=fhv_2024-06
+2026-11-15T15:48:47Z INFO PublishBatch batch_id=fhv_2024-06
+2026-11-15T15:48:47Z INFO BatchFinished batch_id=fhv_2024-06 status=PUBLISHED duration_seconds=0.565
+2026-11-15T15:48:47Z INFO DetectBatch batch_id=fhvhv_2024-06
+2026-11-15T15:48:47Z INFO DetectBatch source_id=fhvhv_2024-06
+2026-11-15T15:48:47Z INFO DetectBatch source_id=fhvhv_2024-06 status=UNCHANGED size=484417715
+2026-11-15T15:48:47Z INFO CheckBatch batch_id=fhvhv_2024-06 force=False
+2026-11-15T15:48:47Z INFO ValidateBatch batch_id=fhvhv_2024-06
+2026-11-15T15:48:48Z INFO TransformBatch batch_id=fhvhv_2024-06
+2026-11-15T15:48:51Z INFO VerifyBatch batch_id=fhvhv_2024-06
+2026-11-15T15:48:52Z INFO PublishBatch batch_id=fhvhv_2024-06
+2026-11-15T15:48:52Z INFO BatchFinished batch_id=fhvhv_2024-06 status=PUBLISHED duration_seconds=4.943
+2026-11-15T15:48:52Z INFO BuildCurated run_id=20261115T154830027174Z_da9168bc batches=24
+2026-11-15T15:48:58Z INFO VerifyRun run_id=20261115T154830027174Z_da9168bc
+2026-11-15T15:48:58Z INFO Report run_id=20261115T154830027174Z_da9168bc baseline=MATCH
+2026-11-15T15:48:59Z INFO VerifyRunPassed run_id=20261115T154830027174Z_da9168bc valid_rows=149655303
+2026-11-15T15:48:59Z INFO RunFinished run_id=20261115T154830027174Z_da9168bc status=SUCCESS duration_seconds=29.018
