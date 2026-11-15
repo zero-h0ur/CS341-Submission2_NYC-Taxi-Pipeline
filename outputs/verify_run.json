@@ -1,6 +1,6 @@
 {
-  "run_id": "20261115T165015689306Z_4582c4ae",
-  "checked_at": "2026-11-15T16:50:24+00:00",
+  "run_id": "20261115T182452118865Z_a51a2327",
+  "checked_at": "2026-11-15T18:25:00+00:00",
   "status": "PASSED",
   "passed": true,
   "window": {
@@ -462,12 +462,16 @@
       "size": 179392
     },
     "outputs/trips_by_service.png": {
-      "sha256": "6c9f2fc7e7f410817e6cc7dac41fbdf6d10e9007312abd0c83c10e8170a0119e",
-      "size": 45035
+      "sha256": "7d2a161d5aa21ad1076af348223dd4cee5787feff9bccaec54593eb2e91eb07f",
+      "size": 97815
+    },
+    "outputs/share_by_month.png": {
+      "sha256": "4e8a94e2d48c04788b62ce67f5a3b6986e61ad9797630a49c965c61f96a3c846",
+      "size": 102405
     },
     "outputs/answer.md": {
-      "sha256": "caacfbbd7e44a12f32ede48f5d0b9cfc34fc486a5beea30aec817c220ca5392e",
-      "size": 1608
+      "sha256": "8f0597590bafadfb415061361d10eede1f8b6ad6d96d67842ed93599942917f1",
+      "size": 1864
     }
   }
 }

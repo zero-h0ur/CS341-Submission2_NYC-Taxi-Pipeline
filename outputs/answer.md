@@ -15,6 +15,8 @@
 | For-Hire Vehicle (FHV) | 8,119,228 | 5.43% |
 | Green Taxi | 339,763 | 0.23% |
 
+เมื่อแยกดูรายเดือน High Volume FHV (FHVHV) ยังมากที่สุดทุกเดือน โดยมีสัดส่วน 79.7% ถึง 82.0% ของ valid trips ในเดือนนั้น
+
 รวม valid trips: 149,655,303 เที่ยว
 Raw records: 149,655,796 แถว; rejected: 493 แถว
 ผลเทียบ baseline S1: MATCH
