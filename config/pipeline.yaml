@@ -1,0 +1,71 @@
+paths:
+  raw: data/raw
+  trusted: data/trusted
+  curated: data/curated
+  quarantine: data/quarantine
+  processed: data/processed
+  state: state
+  logs: logs
+  outputs: outputs
+  evidence: evidence
+
+sources:
+  trip_url_template: "https://d37ci6vzurychx.cloudfront.net/trip-data/{service}_tripdata_{month}.parquet"
+  zone_lookup_url: "https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv"
+
+  services:
+    yellow:
+      pickup: tpep_pickup_datetime
+      dropoff: tpep_dropoff_datetime
+      pu_location: PULocationID
+      do_location: DOLocationID
+
+    green:
+      pickup: lpep_pickup_datetime
+      dropoff: lpep_dropoff_datetime
+      pu_location: PULocationID
+      do_location: DOLocationID
+
+    fhv:
+      pickup: pickup_datetime
+      dropoff: dropOff_datetime
+      pu_location: PUlocationID
+      do_location: DOlocationID
+
+    fhvhv:
+      pickup: pickup_datetime
+      dropoff: dropoff_datetime
+      pu_location: PULocationID
+      do_location: DOLocationID
+
+duckdb:
+  memory_limit: "2GB"
+  threads: 2
+  temp_directory: data/_duckdb_tmp
+
+ingest:
+  max_attempts: 3
+  connect_timeout_seconds: 15
+  read_timeout_seconds: 120
+  chunk_bytes: 1048576
+
+quality:
+  max_outside_month_ratio: 0.01
+  min_valid_ratio: 0.99
+  long_trip_minutes: 1440
+
+baseline:
+  start: "2024-01"
+  end: "2024-06"
+
+  valid_trips:
+    fhvhv: 120864668
+    yellow: 20331644
+    fhv: 8119228
+    green: 339763
+
+  raw_rows:
+    fhvhv: 120864668
+    yellow: 20332093
+    fhv: 8119228
+    green: 339807
