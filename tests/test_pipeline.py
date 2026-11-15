@@ -53,7 +53,7 @@ def test_publish_rerun_and_marker_loss_keep_trip_count(config, server):
     assert (config.path("outputs") / "monthly_trip_counts.csv").read_bytes() == original_csv
     history = [json.loads(line) for line in (
         config.path("state") / "batch_history.jsonl"
-    ).read_text().splitlines()]
+    ).read_text(encoding="utf-8").splitlines()]
     assert [row["status"] for row in history] == ["PUBLISHED", "ALREADY_PROCESSED", "PUBLISHED"]
 
 
@@ -151,10 +151,10 @@ def test_curated_keeps_unknown_borough_and_matches_fixture_baseline(config, serv
     proof = read_proof(config)
     assert proof["baseline"]["status"] == "MATCH"
     assert proof["totals"]["valid_rows"] == proof["totals"]["borough_rows"] == 72
-    with (config.path("outputs") / "trips_by_borough.csv").open(newline="") as handle:
+    with (config.path("outputs") / "trips_by_borough.csv").open(encoding="utf-8", newline="") as handle:
         boroughs = list(csv.DictReader(handle))
     assert sum(int(row["number_of_trips"]) for row in boroughs if row["pu_borough"] == "Unknown") == 1
-    with (config.path("outputs") / "sample_trusted_trips.csv").open(newline="") as handle:
+    with (config.path("outputs") / "sample_trusted_trips.csv").open(encoding="utf-8", newline="") as handle:
         sample = list(csv.DictReader(handle))
     assert len(sample) == 72
     assert {row["service_type"] for row in sample} == {batch.service for batch in selected}

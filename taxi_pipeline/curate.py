@@ -17,7 +17,7 @@ def published_files(config: Config, batches: list[Batch]) -> list[Path]:
         if (
             marker.get("status") != "PUBLISHED"
             or marker.get("batch_id") != batch.batch_id
-            or marker.get("trusted_file") != str(path.relative_to(config.root))
+            or marker.get("trusted_file") != path.relative_to(config.root).as_posix()
             or sorted(path.parent.glob("*.parquet")) != [path]
         ):
             raise ValueError(f"Batch has no complete published partition: {batch.batch_id}")

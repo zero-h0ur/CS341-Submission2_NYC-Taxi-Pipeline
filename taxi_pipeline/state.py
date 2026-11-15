@@ -1,5 +1,4 @@
 import csv
-import fcntl
 import hashlib
 import json
 import logging
@@ -14,6 +13,13 @@ from typing import Any, Iterator
 from uuid import uuid4
 
 from taxi_pipeline.config import Config
+
+try:
+    import fcntl
+    msvcrt = None
+except ImportError:  # Windows has msvcrt instead of fcntl
+    fcntl = None
+    import msvcrt
 
 
 def utc_now() -> str:
@@ -33,7 +39,7 @@ def write_json_atomic(path: Path, value: dict[str, Any]) -> None:
     temporary = None
     try:
         with tempfile.NamedTemporaryFile(
-            mode="w", encoding="utf-8", dir=path.parent,
+            mode="w", encoding="utf-8", newline="\n", dir=path.parent,
             prefix=f".{path.name}.", suffix=".tmp", delete=False,
         ) as handle:
             temporary = Path(handle.name)
@@ -62,18 +68,34 @@ def load_manifest(path: Path) -> dict[str, Any]:
     return manifest
 
 
+def _lock_file(handle) -> None:
+    if fcntl is not None:
+        fcntl.flock(handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+    else:
+        handle.seek(0)
+        msvcrt.locking(handle.fileno(), msvcrt.LK_NBLCK, 1)
+
+
+def _unlock_file(handle) -> None:
+    if fcntl is not None:
+        fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
+    else:
+        handle.seek(0)
+        msvcrt.locking(handle.fileno(), msvcrt.LK_UNLCK, 1)
+
+
 @contextmanager
 def run_lock(state_directory: Path) -> Iterator[None]:
     state_directory.mkdir(parents=True, exist_ok=True)
     with (state_directory / "pipeline.lock").open("a+b") as handle:
         try:
-            fcntl.flock(handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
-        except BlockingIOError as exc:
+            _lock_file(handle)
+        except OSError as exc:
             raise RuntimeError("Another pipeline process holds the run lock.") from exc
         try:
             yield
         finally:
-            fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
+            _unlock_file(handle)
 
 
 def new_run_id() -> str:
@@ -94,7 +116,7 @@ def append_batch_history(config: Config, record: dict[str, Any]) -> None:
             previous.seek(-1, os.SEEK_END)
             if previous.read(1) != b"\n":
                 separator = "\n"
-    with path.open("a", encoding="utf-8") as handle:
+    with path.open("a", encoding="utf-8", newline="\n") as handle:
         handle.write(separator + json.dumps(record, ensure_ascii=False) + "\n")
         handle.flush()
         os.fsync(handle.fileno())
@@ -197,7 +219,7 @@ def status_text(config: Config) -> str:
             stale = (
                 marker.get("source_sha256") != source.get("sha256")
                 or marker.get("reference_sha256") != reference.get("sha256")
-                or marker.get("trusted_file") != str(trusted.relative_to(config.root))
+                or marker.get("trusted_file") != trusted.relative_to(config.root).as_posix()
                 or not trusted.is_file()
                 or not (config.path("raw") / service / f"{service}_tripdata_{month}.parquet").is_file()
                 or not (config.path("raw") / "reference" / "taxi_zone_lookup.csv").is_file()

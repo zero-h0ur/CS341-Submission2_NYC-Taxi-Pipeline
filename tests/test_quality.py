@@ -134,7 +134,10 @@ def test_duplicate_zone_ids_block_lookup(config):
 
 def test_quarantine_with_symlinked_project_root(config, tmp_path, trip_table, write_batch):
     alias = tmp_path / "alias"
-    alias.symlink_to(config.root, target_is_directory=True)
+    try:
+        alias.symlink_to(config.root, target_is_directory=True)
+    except OSError:
+        pytest.skip("Creating symlinks needs extra privileges on this machine.")
     linked = replace(config, root=alias)
     table = trip_table(rows=100)
     data = table.to_pydict()
