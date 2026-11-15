@@ -16,6 +16,9 @@ class Config:
     root: Path
     values: dict[str, Any]
 
+    def __post_init__(self) -> None:
+        object.__setattr__(self, "root", Path(self.root).expanduser().resolve())
+
     def path(self, name: str) -> Path:
         return (self.root / self.values["paths"][name]).resolve()
 
