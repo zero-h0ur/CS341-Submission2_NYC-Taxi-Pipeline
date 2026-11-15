@@ -45,13 +45,15 @@ def _reusable_marker(
     try:
         marker = json.loads(path.read_text(encoding="utf-8"))
         trusted = partition_file(config, batch)
+        # Skip only if the marker still matches the files on disk. Any doubt
+        # sends the batch back through the gate instead of trusting old state.
         if (
             marker.get("status") != "PUBLISHED"
             or marker.get("batch_id") != batch.batch_id
             or marker.get("source_sha256") != source_sha
             or marker.get("reference_sha256") != reference_sha
             or marker.get("processing_fingerprint") != fingerprint
-            or marker.get("trusted_file") != str(trusted.relative_to(config.root))
+            or marker.get("trusted_file") != trusted.relative_to(config.root).as_posix()
             or sorted(trusted.parent.glob("*.parquet")) != [trusted]
             or not isinstance(marker.get("quality_report"), dict)
         ):
@@ -121,6 +123,8 @@ def _process_batch(
                 verification={"trusted_artifact_unchanged": True},
             )
         else:
+            # Remove the old marker before touching data. If this run dies halfway,
+            # the next run must not see a "done" flag for a half-written batch.
             marker_path(config, batch.batch_id).unlink(missing_ok=True)
             state = "ValidateBatch"
             logger.info("%s batch_id=%s", state, batch.batch_id)
@@ -140,7 +144,7 @@ def _process_batch(
                     "source_file": batch.raw_path.name, "source_sha256": source_sha,
                     "reference_sha256": reference_sha,
                     "processing_fingerprint": fingerprint,
-                    "trusted_file": str(trusted.relative_to(config.root)),
+                    "trusted_file": trusted.relative_to(config.root).as_posix(),
                     "trusted_sha256": sha256_file(trusted),
                     "started_at": record["started_at"], "finished_at": utc_now(),
                     "quality_report": quality.report, "verification": verification,
@@ -367,7 +371,7 @@ def execute_run(config: Config, batches: list[Batch], mode: str, force: bool = F
         ) else "FAILED"
         summary.update(
             finished_at=utc_now(), duration_seconds=round(time.perf_counter() - clock, 3),
-            log_file=str(log_file.relative_to(config.root)),
+            log_file=log_file.relative_to(config.root).as_posix(),
         )
         logger.info(
             "RunFinished run_id=%s status=%s duration_seconds=%s",

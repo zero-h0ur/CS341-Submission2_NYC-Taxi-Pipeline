@@ -16,6 +16,8 @@ def verify_batch(
     connection: duckdb.DuckDBPyConnection, config: Config,
     batch: Batch, quality_report: dict[str, Any],
 ) -> dict[str, Any]:
+    # Read back what was actually written. A finished write call only proves the
+    # code ran, not that the partition holds the rows the gate accepted.
     path = partition_file(config, batch)
     files = sorted(path.parent.glob("*.parquet"))
     if files != [path]:

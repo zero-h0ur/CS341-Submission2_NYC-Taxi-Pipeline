@@ -123,6 +123,7 @@ def _classify(
             {_literal(batch.batch_id)} AS batch_id,
             {_literal(batch.raw_path.name)} AS source_file,
             {_literal(run_id)} AS run_id,
+            -- first matching rule wins, so a row is never counted under two reasons
             CASE
                 WHEN {pickup} IS NULL THEN 'missing_pickup'
                 WHEN {dropoff} IS NULL THEN 'missing_dropoff'
@@ -260,10 +261,12 @@ def validate_batch(
             part.replace(rejected)
         finally:
             part.unlink(missing_ok=True)
-        report["rejected_file"] = str(rejected.relative_to(config.root))
+        report["rejected_file"] = rejected.relative_to(config.root).as_posix()
     else:
         rejected.unlink(missing_ok=True)
 
+    # A few bad rows are normal and go to quarantine. Too many means the file
+    # itself is wrong (wrong month, broken export), so the whole batch stops.
     reasons = []
     if report["outside_month_ratio"] > config.values["quality"]["max_outside_month_ratio"]:
         reasons.append("outside_month_ratio_exceeded")

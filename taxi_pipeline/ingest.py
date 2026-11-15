@@ -118,7 +118,7 @@ def _archive_raw(
     path.replace(archive)
     write_json_atomic(archive.with_suffix(archive.suffix + ".json"), {
         "archived_at": utc_now(), "reason": reason,
-        "original_path": str(path.relative_to(config.root)),
+        "original_path": path.relative_to(config.root).as_posix(),
         "sha256": digest, "size": size, "previous_manifest": previous,
     })
     logger.info("Archived raw file: %s reason=%s", archive, reason)
@@ -179,6 +179,8 @@ def ingest_source(
 ) -> IngestResult:
     logger.info("DetectBatch source_id=%s", source_id)
     path.parent.mkdir(parents=True, exist_ok=True)
+    # Downloads land in .part and are renamed at the end, so a cut connection
+    # never leaves a half file that looks like a real raw file.
     part = path.with_name(path.name + ".part")
     part.unlink(missing_ok=True)
     previous = manifest["files"].get(source_id, {})
@@ -227,7 +229,7 @@ def ingest_source(
             part.replace(path)
             status = "DOWNLOADED"
         entry = {
-            "url": url, "path": str(path.relative_to(config.root)),
+            "url": url, "path": path.relative_to(config.root).as_posix(),
             **metadata, "downloaded_at": utc_now(), "checked_at": utc_now(),
         }
 

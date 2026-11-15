@@ -55,6 +55,8 @@ def transform_batch(
             LEFT JOIN zone_lookup AS do_zone ON t.do_location_id = do_zone.location_id
         """).write_parquet(str(staged), compression="zstd")
         destination.parent.mkdir(parents=True, exist_ok=True)
+        # One file per batch, replaced as a whole. Appending would double the
+        # trips whenever a batch is retried after a failure.
         staged.replace(destination)
     finally:
         staged.unlink(missing_ok=True)
