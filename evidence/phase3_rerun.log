@@ -1,0 +1,9 @@
+2026-11-15T15:19:07Z INFO RunStarted run_id=20261115T151907381945Z_07ba30d2 mode=full force=False
+2026-11-15T15:19:07Z INFO DetectBatch source_id=taxi_zone_lookup
+2026-11-15T15:19:07Z INFO DetectBatch source_id=taxi_zone_lookup status=UNCHANGED size=12331
+2026-11-15T15:19:07Z INFO DetectBatch batch_id=green_2024-03
+2026-11-15T15:19:07Z INFO DetectBatch source_id=green_2024-03
+2026-11-15T15:19:07Z INFO DetectBatch source_id=green_2024-03 status=UNCHANGED size=1372372
+2026-11-15T15:19:07Z INFO CheckBatch batch_id=green_2024-03 force=False
+2026-11-15T15:19:07Z INFO BatchFinished batch_id=green_2024-03 status=ALREADY_PROCESSED duration_seconds=0.03
+2026-11-15T15:19:07Z INFO RunFinished run_id=20261115T151907381945Z_07ba30d2 status=SUCCESS duration_seconds=0.117

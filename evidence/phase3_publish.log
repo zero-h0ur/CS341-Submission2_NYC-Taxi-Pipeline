@@ -1,0 +1,13 @@
+2026-11-15T15:18:26Z INFO RunStarted run_id=20261115T151826579184Z_6cea75ee mode=full force=True
+2026-11-15T15:18:26Z INFO DetectBatch source_id=taxi_zone_lookup
+2026-11-15T15:18:29Z INFO DetectBatch source_id=taxi_zone_lookup status=UNCHANGED size=12331
+2026-11-15T15:18:29Z INFO DetectBatch batch_id=green_2024-03
+2026-11-15T15:18:29Z INFO DetectBatch source_id=green_2024-03
+2026-11-15T15:18:29Z INFO DetectBatch source_id=green_2024-03 status=UNCHANGED size=1372372
+2026-11-15T15:18:29Z INFO CheckBatch batch_id=green_2024-03 force=True
+2026-11-15T15:18:29Z INFO ValidateBatch batch_id=green_2024-03
+2026-11-15T15:18:30Z INFO TransformBatch batch_id=green_2024-03
+2026-11-15T15:18:30Z INFO VerifyBatch batch_id=green_2024-03
+2026-11-15T15:18:30Z INFO PublishBatch batch_id=green_2024-03
+2026-11-15T15:18:30Z INFO BatchFinished batch_id=green_2024-03 status=PUBLISHED duration_seconds=0.456
+2026-11-15T15:18:30Z INFO RunFinished run_id=20261115T151826579184Z_6cea75ee status=SUCCESS duration_seconds=3.863

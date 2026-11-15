@@ -1,0 +1,4 @@
+run_id,mode,start,end,services,started_at,finished_at,duration_seconds,status,requested_batches,published,already_processed,quarantined,failed,downloaded,unchanged,validated,error,log_file
+20261115T151826579184Z_6cea75ee,full,2024-03,2024-03,green,2026-11-15T15:18:26+00:00,2026-11-15T15:18:30+00:00,3.863,SUCCESS,1,1,0,0,0,0,0,0,,logs/run_20261115T151826579184Z_6cea75ee.log
+20261115T151907381945Z_07ba30d2,full,2024-03,2024-03,green,2026-11-15T15:19:07+00:00,2026-11-15T15:19:07+00:00,0.117,SUCCESS,1,0,1,0,0,0,0,0,,logs/run_20261115T151907381945Z_07ba30d2.log
+20261115T152009047113Z_a5fa99bb,full,2024-03,2024-03,green,2026-11-15T15:20:09+00:00,2026-11-15T15:20:09+00:00,0.469,SUCCESS,1,1,0,0,0,0,0,0,,logs/run_20261115T152009047113Z_a5fa99bb.log
