@@ -1,0 +1,10 @@
+{
+  "run_id": 43737254249,
+  "url": "https://github.com/zero-h0ur/CS341-Submission2_NYC-Taxi-Pipeline/actions/runs/43737254249",
+  "commit": "8a7442e36d43b35731ade14c8524a9061dd9fbb4",
+  "conclusion": "success",
+  "jobs": [
+    {"name": "Python 3.10", "job_id": 132882473091, "conclusion": "success"},
+    {"name": "Python 3.13", "job_id": 132882473344, "conclusion": "success"}
+  ]
+}

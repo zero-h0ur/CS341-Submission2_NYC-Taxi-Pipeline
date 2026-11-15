@@ -1,0 +1,185 @@
+service_type,pickup_month,pu_borough,number_of_trips
+fhv,2024-01,Bronx,31796
+fhv,2024-01,Brooklyn,69400
+fhv,2024-01,EWR,699
+fhv,2024-01,Manhattan,35572
+fhv,2024-01,N/A,1862
+fhv,2024-01,Queens,83195
+fhv,2024-01,Staten Island,52289
+fhv,2024-01,Unknown,1015303
+fhvhv,2024-01,Bronx,2368692
+fhvhv,2024-01,Brooklyn,5108466
+fhvhv,2024-01,EWR,1
+fhvhv,2024-01,Manhattan,7863672
+fhvhv,2024-01,N/A,765
+fhvhv,2024-01,Queens,4040618
+fhvhv,2024-01,Staten Island,281716
+green,2024-01,Bronx,870
+green,2024-01,Brooklyn,7747
+green,2024-01,EWR,3
+green,2024-01,Manhattan,32846
+green,2024-01,N/A,29
+green,2024-01,Queens,14937
+green,2024-01,Staten Island,5
+green,2024-01,Unknown,112
+yellow,2024-01,Bronx,6905
+yellow,2024-01,Brooklyn,25255
+yellow,2024-01,EWR,295
+yellow,2024-01,Manhattan,2646932
+yellow,2024-01,N/A,1610
+yellow,2024-01,Queens,273121
+yellow,2024-01,Staten Island,72
+yellow,2024-01,Unknown,10360
+fhv,2024-02,Bronx,16192
+fhv,2024-02,Brooklyn,59408
+fhv,2024-02,EWR,649
+fhv,2024-02,Manhattan,28861
+fhv,2024-02,N/A,1819
+fhv,2024-02,Queens,58809
+fhv,2024-02,Staten Island,46513
+fhv,2024-02,Unknown,963842
+fhvhv,2024-02,Bronx,2400179
+fhvhv,2024-02,Brooklyn,5089710
+fhvhv,2024-02,EWR,1
+fhvhv,2024-02,Manhattan,7750155
+fhvhv,2024-02,N/A,737
+fhvhv,2024-02,Queens,3838843
+fhvhv,2024-02,Staten Island,279523
+green,2024-02,Bronx,729
+green,2024-02,Brooklyn,7625
+green,2024-02,EWR,2
+green,2024-02,Manhattan,31497
+green,2024-02,N/A,37
+green,2024-02,Queens,13556
+green,2024-02,Staten Island,2
+green,2024-02,Unknown,123
+yellow,2024-02,Bronx,6969
+yellow,2024-02,Brooklyn,28020
+yellow,2024-02,EWR,287
+yellow,2024-02,Manhattan,2710770
+yellow,2024-02,N/A,1433
+yellow,2024-02,Queens,250308
+yellow,2024-02,Staten Island,57
+yellow,2024-02,Unknown,9660
+fhv,2024-03,Bronx,21229
+fhv,2024-03,Brooklyn,67487
+fhv,2024-03,EWR,751
+fhv,2024-03,Manhattan,37833
+fhv,2024-03,N/A,1868
+fhv,2024-03,Queens,94323
+fhv,2024-03,Staten Island,54632
+fhv,2024-03,Unknown,1191229
+fhvhv,2024-03,Bronx,2683235
+fhvhv,2024-03,Brooklyn,5697558
+fhvhv,2024-03,Manhattan,8253734
+fhvhv,2024-03,N/A,796
+fhvhv,2024-03,Queens,4331205
+fhvhv,2024-03,Staten Island,314260
+green,2024-03,Bronx,774
+green,2024-03,Brooklyn,8275
+green,2024-03,EWR,1
+green,2024-03,Manhattan,32713
+green,2024-03,N/A,33
+green,2024-03,Queens,15515
+green,2024-03,Staten Island,3
+green,2024-03,Unknown,133
+yellow,2024-03,Bronx,11082
+yellow,2024-03,Brooklyn,43938
+yellow,2024-03,EWR,372
+yellow,2024-03,Manhattan,3198999
+yellow,2024-03,N/A,1984
+yellow,2024-03,Queens,314441
+yellow,2024-03,Staten Island,105
+yellow,2024-03,Unknown,11567
+fhv,2024-04,Bronx,24526
+fhv,2024-04,Brooklyn,110448
+fhv,2024-04,EWR,1306
+fhv,2024-04,Manhattan,102234
+fhv,2024-04,N/A,2987
+fhv,2024-04,Queens,89159
+fhv,2024-04,Staten Island,50117
+fhv,2024-04,Unknown,1063849
+fhvhv,2024-04,Bronx,2458558
+fhvhv,2024-04,Brooklyn,5150095
+fhvhv,2024-04,EWR,1
+fhvhv,2024-04,Manhattan,7780497
+fhvhv,2024-04,N/A,769
+fhvhv,2024-04,Queens,4059831
+fhvhv,2024-04,Staten Island,283287
+green,2024-04,Bronx,744
+green,2024-04,Brooklyn,7573
+green,2024-04,EWR,2
+green,2024-04,Manhattan,33883
+green,2024-04,N/A,38
+green,2024-04,Queens,14122
+green,2024-04,Staten Island,3
+green,2024-04,Unknown,102
+yellow,2024-04,Bronx,10834
+yellow,2024-04,Brooklyn,45441
+yellow,2024-04,EWR,509
+yellow,2024-04,Manhattan,3127367
+yellow,2024-04,N/A,1897
+yellow,2024-04,Queens,317158
+yellow,2024-04,Staten Island,112
+yellow,2024-04,Unknown,10892
+fhv,2024-05,Bronx,22344
+fhv,2024-05,Brooklyn,82041
+fhv,2024-05,EWR,206
+fhv,2024-05,Manhattan,36263
+fhv,2024-05,N/A,1992
+fhv,2024-05,Queens,79818
+fhv,2024-05,Staten Island,53976
+fhv,2024-05,Unknown,1075862
+fhvhv,2024-05,Bronx,2521812
+fhvhv,2024-05,Brooklyn,5433458
+fhvhv,2024-05,EWR,1
+fhvhv,2024-05,Manhattan,8116801
+fhvhv,2024-05,N/A,841
+fhvhv,2024-05,Queens,4329733
+fhvhv,2024-05,Staten Island,301892
+green,2024-05,Bronx,844
+green,2024-05,Brooklyn,8586
+green,2024-05,EWR,2
+green,2024-05,Manhattan,35993
+green,2024-05,N/A,42
+green,2024-05,Queens,15407
+green,2024-05,Staten Island,5
+green,2024-05,Unknown,115
+yellow,2024-05,Bronx,11929
+yellow,2024-05,Brooklyn,53854
+yellow,2024-05,EWR,595
+yellow,2024-05,Manhattan,3296095
+yellow,2024-05,N/A,2146
+yellow,2024-05,Queens,347287
+yellow,2024-05,Staten Island,172
+yellow,2024-05,Unknown,11680
+fhv,2024-06,Bronx,17199
+fhv,2024-06,Brooklyn,95970
+fhv,2024-06,EWR,1178
+fhv,2024-06,Manhattan,85180
+fhv,2024-06,N/A,3183
+fhv,2024-06,Queens,83465
+fhv,2024-06,Staten Island,50616
+fhv,2024-06,Unknown,1049748
+fhvhv,2024-06,Bronx,2452835
+fhvhv,2024-06,Brooklyn,5434819
+fhvhv,2024-06,Manhattan,7695987
+fhvhv,2024-06,N/A,859
+fhvhv,2024-06,Queens,4246928
+fhvhv,2024-06,Staten Island,291798
+green,2024-06,Bronx,865
+green,2024-06,Brooklyn,8044
+green,2024-06,EWR,2
+green,2024-06,Manhattan,32307
+green,2024-06,N/A,54
+green,2024-06,Queens,13356
+green,2024-06,Staten Island,1
+green,2024-06,Unknown,106
+yellow,2024-06,Bronx,11139
+yellow,2024-06,Brooklyn,57037
+yellow,2024-06,EWR,481
+yellow,2024-06,Manhattan,3127896
+yellow,2024-06,N/A,1995
+yellow,2024-06,Queens,328912
+yellow,2024-06,Staten Island,156
+yellow,2024-06,Unknown,11518

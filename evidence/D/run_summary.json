@@ -1,0 +1,26 @@
+{
+  "run_id": "20261115T165015689306Z_4582c4ae",
+  "mode": "full",
+  "start": "2024-01",
+  "end": "2024-06",
+  "services": "yellow|green|fhv|fhvhv",
+  "started_at": "2026-11-15T16:50:15+00:00",
+  "finished_at": "2026-11-15T16:50:25+00:00",
+  "duration_seconds": "9.376",
+  "status": "SUCCESS",
+  "requested_batches": "24",
+  "published": "1",
+  "already_processed": "23",
+  "quarantined": "0",
+  "failed": "0",
+  "downloaded": "0",
+  "unchanged": "0",
+  "validated": "0",
+  "error": "",
+  "log_file": "logs/run_20261115T165015689306Z_4582c4ae.log",
+  "analysis_hashes": {
+    "monthly_trip_counts.csv": "11f6364fc703b56c59def75c44c404e50ee54e79f55e730c660fb6b659d2e01f",
+    "trips_by_borough.csv": "bb78542b9de2e5daaa8c9769b45632e9fde3c8769313b2a0f7d4c2952b239817",
+    "service_summary.csv": "fdc7dffa38cb25d097e4c8bb51142e4df987c92a3109744e03a74d717a407b3c"
+  }
+}

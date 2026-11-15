@@ -1,0 +1,128 @@
+2026-11-15T16:50:05Z INFO RunStarted run_id=20261115T165005571529Z_a7d6d10f mode=full force=False
+2026-11-15T16:50:05Z INFO DetectBatch source_id=taxi_zone_lookup
+2026-11-15T16:50:05Z INFO DetectBatch source_id=taxi_zone_lookup status=UNCHANGED size=12331
+2026-11-15T16:50:05Z INFO DetectBatch batch_id=yellow_2024-01
+2026-11-15T16:50:05Z INFO DetectBatch source_id=yellow_2024-01
+2026-11-15T16:50:05Z INFO DetectBatch source_id=yellow_2024-01 status=UNCHANGED size=49961641
+2026-11-15T16:50:05Z INFO CheckBatch batch_id=yellow_2024-01 force=False
+2026-11-15T16:50:05Z INFO BatchFinished batch_id=yellow_2024-01 status=ALREADY_PROCESSED duration_seconds=0.064
+2026-11-15T16:50:05Z INFO DetectBatch batch_id=green_2024-01
+2026-11-15T16:50:05Z INFO DetectBatch source_id=green_2024-01
+2026-11-15T16:50:05Z INFO DetectBatch source_id=green_2024-01 status=UNCHANGED size=1362284
+2026-11-15T16:50:05Z INFO CheckBatch batch_id=green_2024-01 force=False
+2026-11-15T16:50:05Z INFO BatchFinished batch_id=green_2024-01 status=ALREADY_PROCESSED duration_seconds=0.016
+2026-11-15T16:50:05Z INFO DetectBatch batch_id=fhv_2024-01
+2026-11-15T16:50:05Z INFO DetectBatch source_id=fhv_2024-01
+2026-11-15T16:50:05Z INFO DetectBatch source_id=fhv_2024-01 status=UNCHANGED size=15023585
+2026-11-15T16:50:05Z INFO CheckBatch batch_id=fhv_2024-01 force=False
+2026-11-15T16:50:05Z INFO BatchFinished batch_id=fhv_2024-01 status=ALREADY_PROCESSED duration_seconds=0.036
+2026-11-15T16:50:05Z INFO DetectBatch batch_id=fhvhv_2024-01
+2026-11-15T16:50:05Z INFO DetectBatch source_id=fhvhv_2024-01
+2026-11-15T16:50:06Z INFO DetectBatch source_id=fhvhv_2024-01 status=UNCHANGED size=472757547
+2026-11-15T16:50:06Z INFO CheckBatch batch_id=fhvhv_2024-01 force=False
+2026-11-15T16:50:06Z INFO BatchFinished batch_id=fhvhv_2024-01 status=ALREADY_PROCESSED duration_seconds=0.431
+2026-11-15T16:50:06Z INFO DetectBatch batch_id=yellow_2024-02
+2026-11-15T16:50:06Z INFO DetectBatch source_id=yellow_2024-02
+2026-11-15T16:50:06Z INFO DetectBatch source_id=yellow_2024-02 status=UNCHANGED size=50349284
+2026-11-15T16:50:06Z INFO CheckBatch batch_id=yellow_2024-02 force=False
+2026-11-15T16:50:06Z INFO BatchFinished batch_id=yellow_2024-02 status=ALREADY_PROCESSED duration_seconds=0.059
+2026-11-15T16:50:06Z INFO DetectBatch batch_id=green_2024-02
+2026-11-15T16:50:06Z INFO DetectBatch source_id=green_2024-02
+2026-11-15T16:50:06Z INFO DetectBatch source_id=green_2024-02 status=UNCHANGED size=1283805
+2026-11-15T16:50:06Z INFO CheckBatch batch_id=green_2024-02 force=False
+2026-11-15T16:50:06Z INFO BatchFinished batch_id=green_2024-02 status=ALREADY_PROCESSED duration_seconds=0.017
+2026-11-15T16:50:06Z INFO DetectBatch batch_id=fhv_2024-02
+2026-11-15T16:50:06Z INFO DetectBatch source_id=fhv_2024-02
+2026-11-15T16:50:06Z INFO DetectBatch source_id=fhv_2024-02 status=UNCHANGED size=13608941
+2026-11-15T16:50:06Z INFO CheckBatch batch_id=fhv_2024-02 force=False
+2026-11-15T16:50:06Z INFO BatchFinished batch_id=fhv_2024-02 status=ALREADY_PROCESSED duration_seconds=0.029
+2026-11-15T16:50:06Z INFO DetectBatch batch_id=fhvhv_2024-02
+2026-11-15T16:50:06Z INFO DetectBatch source_id=fhvhv_2024-02
+2026-11-15T16:50:06Z INFO DetectBatch source_id=fhvhv_2024-02 status=UNCHANGED size=462475428
+2026-11-15T16:50:06Z INFO CheckBatch batch_id=fhvhv_2024-02 force=False
+2026-11-15T16:50:06Z INFO BatchFinished batch_id=fhvhv_2024-02 status=ALREADY_PROCESSED duration_seconds=0.342
+2026-11-15T16:50:06Z INFO DetectBatch batch_id=yellow_2024-03
+2026-11-15T16:50:06Z INFO DetectBatch source_id=yellow_2024-03
+2026-11-15T16:50:06Z INFO DetectBatch source_id=yellow_2024-03 status=UNCHANGED size=60078280
+2026-11-15T16:50:06Z INFO CheckBatch batch_id=yellow_2024-03 force=False
+2026-11-15T16:50:06Z INFO BatchFinished batch_id=yellow_2024-03 status=ALREADY_PROCESSED duration_seconds=0.067
+2026-11-15T16:50:06Z INFO DetectBatch batch_id=green_2024-03
+2026-11-15T16:50:06Z INFO DetectBatch source_id=green_2024-03
+2026-11-15T16:50:06Z INFO DetectBatch source_id=green_2024-03 status=UNCHANGED size=1372372
+2026-11-15T16:50:06Z INFO CheckBatch batch_id=green_2024-03 force=False
+2026-11-15T16:50:06Z INFO BatchFinished batch_id=green_2024-03 status=ALREADY_PROCESSED duration_seconds=0.022
+2026-11-15T16:50:06Z INFO DetectBatch batch_id=fhv_2024-03
+2026-11-15T16:50:06Z INFO DetectBatch source_id=fhv_2024-03
+2026-11-15T16:50:06Z INFO DetectBatch source_id=fhv_2024-03 status=UNCHANGED size=16743352
+2026-11-15T16:50:06Z INFO CheckBatch batch_id=fhv_2024-03 force=False
+2026-11-15T16:50:06Z INFO BatchFinished batch_id=fhv_2024-03 status=ALREADY_PROCESSED duration_seconds=0.043
+2026-11-15T16:50:06Z INFO DetectBatch batch_id=fhvhv_2024-03
+2026-11-15T16:50:06Z INFO DetectBatch source_id=fhvhv_2024-03
+2026-11-15T16:50:07Z INFO DetectBatch source_id=fhvhv_2024-03 status=UNCHANGED size=507940560
+2026-11-15T16:50:07Z INFO CheckBatch batch_id=fhvhv_2024-03 force=False
+2026-11-15T16:50:07Z INFO BatchFinished batch_id=fhvhv_2024-03 status=ALREADY_PROCESSED duration_seconds=0.404
+2026-11-15T16:50:07Z INFO DetectBatch batch_id=yellow_2024-04
+2026-11-15T16:50:07Z INFO DetectBatch source_id=yellow_2024-04
+2026-11-15T16:50:07Z INFO DetectBatch source_id=yellow_2024-04 status=UNCHANGED size=59133625
+2026-11-15T16:50:07Z INFO CheckBatch batch_id=yellow_2024-04 force=False
+2026-11-15T16:50:07Z INFO BatchFinished batch_id=yellow_2024-04 status=ALREADY_PROCESSED duration_seconds=0.071
+2026-11-15T16:50:07Z INFO DetectBatch batch_id=green_2024-04
+2026-11-15T16:50:07Z INFO DetectBatch source_id=green_2024-04
+2026-11-15T16:50:07Z INFO DetectBatch source_id=green_2024-04 status=UNCHANGED size=1346502
+2026-11-15T16:50:07Z INFO CheckBatch batch_id=green_2024-04 force=False
+2026-11-15T16:50:07Z INFO BatchFinished batch_id=green_2024-04 status=ALREADY_PROCESSED duration_seconds=0.017
+2026-11-15T16:50:07Z INFO DetectBatch batch_id=fhv_2024-04
+2026-11-15T16:50:07Z INFO DetectBatch source_id=fhv_2024-04
+2026-11-15T16:50:07Z INFO DetectBatch source_id=fhv_2024-04 status=UNCHANGED size=16515459
+2026-11-15T16:50:07Z INFO CheckBatch batch_id=fhv_2024-04 force=False
+2026-11-15T16:50:07Z INFO BatchFinished batch_id=fhv_2024-04 status=ALREADY_PROCESSED duration_seconds=0.034
+2026-11-15T16:50:07Z INFO DetectBatch batch_id=fhvhv_2024-04
+2026-11-15T16:50:07Z INFO DetectBatch source_id=fhvhv_2024-04
+2026-11-15T16:50:07Z INFO DetectBatch source_id=fhvhv_2024-04 status=UNCHANGED size=476115643
+2026-11-15T16:50:07Z INFO CheckBatch batch_id=fhvhv_2024-04 force=False
+2026-11-15T16:50:07Z INFO BatchFinished batch_id=fhvhv_2024-04 status=ALREADY_PROCESSED duration_seconds=0.359
+2026-11-15T16:50:07Z INFO DetectBatch batch_id=yellow_2024-05
+2026-11-15T16:50:07Z INFO DetectBatch source_id=yellow_2024-05
+2026-11-15T16:50:07Z INFO DetectBatch source_id=yellow_2024-05 status=UNCHANGED size=62553128
+2026-11-15T16:50:07Z INFO CheckBatch batch_id=yellow_2024-05 force=False
+2026-11-15T16:50:07Z INFO BatchFinished batch_id=yellow_2024-05 status=ALREADY_PROCESSED duration_seconds=0.07
+2026-11-15T16:50:07Z INFO DetectBatch batch_id=green_2024-05
+2026-11-15T16:50:07Z INFO DetectBatch source_id=green_2024-05
+2026-11-15T16:50:07Z INFO DetectBatch source_id=green_2024-05 status=UNCHANGED size=1453912
+2026-11-15T16:50:07Z INFO CheckBatch batch_id=green_2024-05 force=False
+2026-11-15T16:50:07Z INFO BatchFinished batch_id=green_2024-05 status=ALREADY_PROCESSED duration_seconds=0.018
+2026-11-15T16:50:07Z INFO DetectBatch batch_id=fhv_2024-05
+2026-11-15T16:50:07Z INFO DetectBatch source_id=fhv_2024-05
+2026-11-15T16:50:07Z INFO DetectBatch source_id=fhv_2024-05 status=UNCHANGED size=15958984
+2026-11-15T16:50:07Z INFO CheckBatch batch_id=fhv_2024-05 force=False
+2026-11-15T16:50:07Z INFO BatchFinished batch_id=fhv_2024-05 status=ALREADY_PROCESSED duration_seconds=0.038
+2026-11-15T16:50:07Z INFO DetectBatch batch_id=fhvhv_2024-05
+2026-11-15T16:50:07Z INFO DetectBatch source_id=fhvhv_2024-05
+2026-11-15T16:50:08Z INFO DetectBatch source_id=fhvhv_2024-05 status=UNCHANGED size=498575918
+2026-11-15T16:50:08Z INFO CheckBatch batch_id=fhvhv_2024-05 force=False
+2026-11-15T16:50:08Z INFO BatchFinished batch_id=fhvhv_2024-05 status=ALREADY_PROCESSED duration_seconds=0.431
+2026-11-15T16:50:08Z INFO DetectBatch batch_id=yellow_2024-06
+2026-11-15T16:50:08Z INFO DetectBatch source_id=yellow_2024-06
+2026-11-15T16:50:08Z INFO DetectBatch source_id=yellow_2024-06 status=UNCHANGED size=59859922
+2026-11-15T16:50:08Z INFO CheckBatch batch_id=yellow_2024-06 force=False
+2026-11-15T16:50:08Z INFO BatchFinished batch_id=yellow_2024-06 status=ALREADY_PROCESSED duration_seconds=0.063
+2026-11-15T16:50:08Z INFO DetectBatch batch_id=green_2024-06
+2026-11-15T16:50:08Z INFO DetectBatch source_id=green_2024-06
+2026-11-15T16:50:08Z INFO DetectBatch source_id=green_2024-06 status=UNCHANGED size=1326194
+2026-11-15T16:50:08Z INFO CheckBatch batch_id=green_2024-06 force=False
+2026-11-15T16:50:08Z INFO BatchFinished batch_id=green_2024-06 status=ALREADY_PROCESSED duration_seconds=0.015
+2026-11-15T16:50:08Z INFO DetectBatch batch_id=fhv_2024-06
+2026-11-15T16:50:08Z INFO DetectBatch source_id=fhv_2024-06
+2026-11-15T16:50:08Z INFO DetectBatch source_id=fhv_2024-06 status=UNCHANGED size=16029924
+2026-11-15T16:50:08Z INFO CheckBatch batch_id=fhv_2024-06 force=False
+2026-11-15T16:50:08Z INFO BatchFinished batch_id=fhv_2024-06 status=ALREADY_PROCESSED duration_seconds=0.029
+2026-11-15T16:50:08Z INFO DetectBatch batch_id=fhvhv_2024-06
+2026-11-15T16:50:08Z INFO DetectBatch source_id=fhvhv_2024-06
+2026-11-15T16:50:08Z INFO DetectBatch source_id=fhvhv_2024-06 status=UNCHANGED size=484417715
+2026-11-15T16:50:08Z INFO CheckBatch batch_id=fhvhv_2024-06 force=False
+2026-11-15T16:50:08Z INFO BatchFinished batch_id=fhvhv_2024-06 status=ALREADY_PROCESSED duration_seconds=0.361
+2026-11-15T16:50:08Z INFO BuildCurated run_id=20261115T165005571529Z_a7d6d10f batches=24
+2026-11-15T16:50:14Z INFO VerifyRun run_id=20261115T165005571529Z_a7d6d10f
+2026-11-15T16:50:14Z INFO Report run_id=20261115T165005571529Z_a7d6d10f baseline=MATCH
+2026-11-15T16:50:14Z INFO VerifyRunPassed run_id=20261115T165005571529Z_a7d6d10f valid_rows=149655303
+2026-11-15T16:50:14Z INFO RunFinished run_id=20261115T165005571529Z_a7d6d10f status=SUCCESS duration_seconds=9.181
