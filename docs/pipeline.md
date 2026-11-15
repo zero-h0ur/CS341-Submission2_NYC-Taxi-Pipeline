@@ -2,20 +2,7 @@
 
 ## ระดับ batch
 
-```mermaid
-flowchart TD
-    D[DetectBatch: download or reuse raw] --> C{CheckBatch}
-    C -->|Marker and fingerprints match| A[ALREADY_PROCESSED]
-    C -->|New changed missing artifact or force| V{ValidateBatch}
-    V -->|BLOCK| Q[QUARANTINED]
-    V -->|Valid and standardized| T[TransformBatch: LEFT JOIN and staging]
-    V -->|Rejected rows| R[Row quarantine with reason]
-    T --> P[Replace part-0.parquet]
-    P --> B{VerifyBatch}
-    B -->|Pass| S[Write success marker]
-    S --> U[PUBLISHED]
-    B -->|Fail| F[FAILED without marker]
-```
+![Batch lifecycle](images/batch-lifecycle.svg)
 
 DetectBatch ตรวจไฟล์บนเครื่องกับ SHA ใน manifest และ metadata จาก server ถ้า ETag/size เปลี่ยนจะ archive raw เดิมแล้วรับเวอร์ชันใหม่ Download เขียนเป็น `.part` ก่อน rename และ retry เมื่อ network/stream ไม่ครบ หาก HEAD/ETag ใช้ตรวจไม่ได้จะใช้ GET และเทียบเนื้อหา
 

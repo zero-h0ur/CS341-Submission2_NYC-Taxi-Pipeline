@@ -2,6 +2,8 @@
 
 นายปพนพัชร์ มีวน — 6709650458
 
+[![Tests](https://github.com/zero-h0ur/CS341-Submission2_NYC-Taxi-Pipeline/actions/workflows/tests.yml/badge.svg)](https://github.com/zero-h0ur/CS341-Submission2_NYC-Taxi-Pipeline/actions/workflows/tests.yml)
+
 ## คำถามและคำตอบ
 
 **Which taxi type was the most used in the first half of 2024?**
@@ -40,23 +42,7 @@
 
 ## Pipeline
 
-```mermaid
-flowchart LR
-    P[Monthly Parquet] --> R[Raw]
-    Z[Zone CSV] --> R
-    R --> G{Validation gate}
-    G -->|BLOCK| QB[Batch quarantine JSON]
-    G -->|Reject row| QR[Rejected Parquet]
-    G -->|Valid rows with warning flags| S[Standardize and LEFT JOIN zones]
-    S --> ST[Trusted staging]
-    ST --> T[Replace batch partition]
-    T --> V{VerifyBatch}
-    V -->|Pass| M[Success marker]
-    M --> C[Curated monthly and borough counts]
-    C --> VR{VerifyRun and S1 baseline}
-    VR -->|Pass| O[CSV sample answer and chart]
-    VR -->|Fail| F[Failed verification and nonzero exit]
-```
+![Pipeline overview: sources, raw, validation gate, trusted, curated, outputs, quarantine and state files](docs/images/pipeline-overview.svg)
 
 [State machine และรายละเอียดการ publish](docs/pipeline.md)
 
@@ -159,6 +145,8 @@ VerifyBatch ตรวจข้อมูลหลังเขียนก่อ�
 ระบบเขียน `verify_run.json` เป็น `passed=false` ตอนเริ่ม full run และเปลี่ยนเป็น `PASSED` หลังตรวจและเผยแพร่ artifacts ครบ หากรอบใหม่ล้มเหลว ผลเก่าที่อยู่บนเครื่องต้องอ่านร่วมกับสถานะและ run ID ในไฟล์นี้
 
 ## หลักฐานรันซ้ำและอัปเดต
+
+![Batch lifecycle และผลของรัน A–D](docs/images/batch-lifecycle.svg)
 
 [ผล A–D พร้อมเวลาและจำนวน batch จริง](docs/rerun_evidence.md)
 
