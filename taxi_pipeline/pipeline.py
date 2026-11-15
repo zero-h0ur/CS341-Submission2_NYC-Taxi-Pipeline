@@ -8,17 +8,19 @@ import requests
 import pyarrow.parquet as pq
 
 from taxi_pipeline.config import Config, open_connection
+from taxi_pipeline.curate import build_curated
 from taxi_pipeline.ingest import Batch, ingest_source
 from taxi_pipeline.quality import (
     REPORT_FIELDS, load_zone_lookup, validate_batch, write_quality_report,
 )
+from taxi_pipeline.report import generate_reports, publish_artifacts
 from taxi_pipeline.state import (
     append_batch_history, append_run_history, load_manifest, marker_path,
     new_run_id, run_lock, run_log, sha256_file, status_text, utc_now,
     write_json_atomic,
 )
 from taxi_pipeline.transform import TRUSTED_SCHEMA, partition_file, transform_batch
-from taxi_pipeline.verify import verify_batch
+from taxi_pipeline.verify import verify_batch, verify_run
 
 
 logger = logging.getLogger(__name__)
@@ -273,6 +275,42 @@ def _diagnostics(config, batches, run_id, mode, records):
     return reference_status
 
 
+def _build_outputs(config, batches, run_id, records):
+    proof_path = config.path("outputs") / "verify_run.json"
+    logger.info("BuildCurated run_id=%s batches=%s", run_id, len(batches))
+    with open_connection(config) as connection:
+        paths = build_curated(connection, config, batches, run_id)
+        logger.info("VerifyRun run_id=%s", run_id)
+        verification = verify_run(connection, config, batches, run_id, paths, records)
+        if not verification["passed"]:
+            write_json_atomic(proof_path, verification)
+            failed = [name for name, passed in verification["checks"].items() if not passed]
+            raise ValueError(f"VerifyRun failed: {', '.join(failed)}")
+        progress = {**verification, "passed": False, "status": "RUNNING", "stage": "Report"}
+        write_json_atomic(proof_path, progress)
+        logger.info("Report run_id=%s baseline=%s", run_id, verification["baseline"]["status"])
+        destinations = generate_reports(connection, config, paths, verification)
+        receipts = publish_artifacts(config, destinations)
+        verification["artifacts"] = receipts
+        verification["checks"]["reports_published"] = True
+        write_json_atomic(proof_path, verification)
+    logger.info("VerifyRunPassed run_id=%s valid_rows=%s", run_id, verification["totals"]["valid_rows"])
+
+
+def _fail_run_verification(config: Config, run_id: str, error: str) -> None:
+    path = config.path("outputs") / "verify_run.json"
+    proof = {}
+    if path.exists():
+        try:
+            candidate = json.loads(path.read_text(encoding="utf-8"))
+            if isinstance(candidate, dict) and candidate.get("run_id") == run_id:
+                proof = candidate
+        except (OSError, ValueError):
+            pass
+    proof.update(run_id=run_id, status="FAILED", passed=False, error=error, checked_at=utc_now())
+    write_json_atomic(path, proof)
+
+
 def execute_run(config: Config, batches: list[Batch], mode: str, force: bool = False):
     if not batches or mode not in {"full", "ingest", "validate"}:
         raise ValueError("A supported mode and at least one batch are required.")
@@ -293,7 +331,20 @@ def execute_run(config: Config, batches: list[Batch], mode: str, force: bool = F
         logger.info("RunStarted run_id=%s mode=%s force=%s", run_id, mode, force)
         try:
             if mode == "full":
+                write_json_atomic(config.path("outputs") / "verify_run.json", {
+                    "run_id": run_id, "status": "RUNNING", "passed": False,
+                    "window": {"start": batches[0].month, "end": batches[-1].month},
+                })
                 _publish_all(config, batches, run_id, force, summary["records"])
+                accepted = (
+                    len(summary["records"]) == len(batches)
+                    and all(item["status"] in {"PUBLISHED", "ALREADY_PROCESSED"}
+                            for item in summary["records"])
+                )
+                if accepted:
+                    _build_outputs(config, batches, run_id, summary["records"])
+                else:
+                    _fail_run_verification(config, run_id, "Some requested batches were not accepted.")
             else:
                 summary["reference"] = _diagnostics(
                     config, batches, run_id, mode, summary["records"],
@@ -302,6 +353,8 @@ def execute_run(config: Config, batches: list[Batch], mode: str, force: bool = F
         except Exception as exc:
             summary["error"] = str(exc)
             logger.exception("RunFailed run_id=%s", run_id)
+            if mode == "full":
+                _fail_run_verification(config, run_id, str(exc))
         for field, status in {
             "published": "PUBLISHED", "already_processed": "ALREADY_PROCESSED",
             "quarantined": "QUARANTINED", "failed": "FAILED",

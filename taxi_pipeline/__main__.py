@@ -98,6 +98,9 @@ def main() -> int:
             f"already_processed={result['already_processed']} "
             f"quarantined={result['quarantined']} failed={result['failed']}"
         )
+        if result["status"] == "SUCCESS":
+            print(f"verification={config.path('outputs') / 'verify_run.json'}")
+            print(f"answer={config.path('outputs') / 'answer.md'}")
     print(f"run_id={result['run_id']}")
     print(f"run_status={result['status']}")
     print(f"log_file={config.root / result['log_file']}")
