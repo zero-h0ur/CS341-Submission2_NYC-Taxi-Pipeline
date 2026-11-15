@@ -1,0 +1,226 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="748" viewBox="0 0 1320 748" role="img" aria-labelledby="title desc" xmlns:c2pa="http://c2pa.org/manifest">
+  <title id="title">NYC Taxi pipeline data flow</title>
+  <desc id="desc">Monthly TLC Parquet files and the taxi zone CSV land in the raw zone, pass a validation gate, are written to the trusted zone one partition per batch, aggregated into curated tables and published as outputs. Rejected rows and blocked batches go to quarantine. Manifest, success markers, batch history and run logs record state.</desc>
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; fill: #334155; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "DejaVu Sans Mono", monospace; }
+      .h1 { font-size: 18px; font-weight: 600; fill: #0f172a; }
+      .sub { font-size: 12.5px; fill: #64748b; }
+      .zone { font-size: 11.5px; font-weight: 700; letter-spacing: 1.2px; }
+      .path { font-size: 11px; fill: #64748b; }
+      .ct { font-size: 13px; font-weight: 600; fill: #0f172a; }
+      .ctm { font-size: 12px; font-weight: 600; fill: #0f172a; }
+      .body { font-size: 11px; fill: #475569; }
+      .bodym { font-size: 10.5px; fill: #475569; }
+      .note { font-size: 10.5px; fill: #64748b; }
+      .label { font-size: 10px; font-weight: 700; letter-spacing: 1px; fill: #94a3b8; }
+      .card { fill: #ffffff; stroke: #e2e8f0; stroke-width: 1; }
+      .flow { fill: none; stroke: #475569; stroke-width: 1.5; }
+      .bus { fill: none; stroke: #94a3b8; stroke-width: 1.2; stroke-dasharray: 4 4; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrow-sm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <rect x="0.5" y="0.5" width="1319" height="747" rx="14" fill="#ffffff" stroke="#e5e7eb"/>
+
+  <!-- header -->
+  <text x="32" y="44" class="h1">NYC Taxi pipeline · data flow</text>
+  <text x="32" y="66" class="sub">One batch is one service × month file. Counts come from the January–June 2024 run: 24 batches across 4 services.</text>
+  <line x1="1040" y1="40" x2="1068" y2="40" class="flow" marker-end="url(#arrow)"/>
+  <text x="1076" y="44" class="note">data</text>
+  <line x1="1124" y1="40" x2="1152" y2="40" class="bus"/>
+  <text x="1160" y="44" class="note">state and evidence</text>
+
+  <!-- SOURCES -->
+  <rect x="32" y="92" width="160" height="376" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="48" y="118" class="zone" fill="#475569">SOURCES</text>
+  <text x="48" y="136" class="path">NYC TLC website</text>
+
+  <rect x="44" y="150" width="136" height="166" rx="8" class="card"/>
+  <text x="56" y="172" class="ct">Trip records</text>
+  <text x="56" y="188" class="body">Parquet · monthly</text>
+  <rect x="56" y="201" width="10" height="10" rx="2" fill="#fbc02d"/>
+  <text x="74" y="210" class="body">Yellow</text>
+  <rect x="56" y="223" width="10" height="10" rx="2" fill="#43a047"/>
+  <text x="74" y="232" class="body">Green</text>
+  <rect x="56" y="245" width="10" height="10" rx="2" fill="#4682b4"/>
+  <text x="74" y="254" class="body">FHV</text>
+  <rect x="56" y="267" width="10" height="10" rx="2" fill="#7e57c2"/>
+  <text x="74" y="276" class="body">FHVHV</text>
+  <text x="56" y="302" class="note">4 different schemas</text>
+
+  <rect x="44" y="330" width="136" height="70" rx="8" class="card"/>
+  <text x="56" y="352" class="ct">Taxi zone lookup</text>
+  <text x="56" y="370" class="body">CSV · 265 zones</text>
+  <text x="56" y="386" class="body">LocationID → Borough</text>
+
+  <!-- RAW -->
+  <rect x="226" y="92" width="168" height="376" rx="10" fill="#f5f5f4" stroke="#e7e5e4"/>
+  <text x="242" y="118" class="zone" fill="#57534e">RAW</text>
+  <text x="242" y="136" class="path mono">data/raw/</text>
+
+  <rect x="238" y="150" width="144" height="102" rx="8" class="card"/>
+  <text x="250" y="172" class="ct">Source files</text>
+  <text x="250" y="192" class="body">24 Parquet + 1 CSV</text>
+  <text x="250" y="208" class="body">kept as downloaded</text>
+  <text x="250" y="224" class="body">3.2 GB on disk</text>
+  <text x="250" y="240" class="bodym mono">149,655,796 rows</text>
+
+  <rect x="238" y="264" width="144" height="72" rx="8" class="card"/>
+  <text x="250" y="286" class="ctm mono">manifest.json</text>
+  <text x="250" y="306" class="body">skip download when</text>
+  <text x="250" y="322" class="body">SHA and ETag match</text>
+
+  <rect x="238" y="348" width="144" height="72" rx="8" class="card"/>
+  <text x="250" y="370" class="ctm mono">_archive/</text>
+  <text x="250" y="390" class="body">previous version, kept</text>
+  <text x="250" y="406" class="body">if TLC republishes</text>
+
+  <!-- GATE -->
+  <rect x="428" y="178" width="164" height="164" rx="10" fill="#1e293b"/>
+  <text x="442" y="204" class="ct" style="fill:#ffffff">Validation gate</text>
+  <text x="442" y="222" class="bodym mono" style="fill:#94a3b8">ValidateBatch</text>
+  <line x1="442" y1="236" x2="578" y2="236" stroke="#334155"/>
+  <text x="442" y="258" class="bodym mono" style="fill:#fca5a5;font-weight:700">BLOCK</text>
+  <text x="498" y="258" class="bodym" style="fill:#e2e8f0">batch stops</text>
+  <text x="442" y="280" class="bodym mono" style="fill:#fcd34d;font-weight:700">REJECT</text>
+  <text x="498" y="280" class="bodym" style="fill:#e2e8f0">to quarantine</text>
+  <text x="442" y="302" class="bodym mono" style="fill:#7dd3fc;font-weight:700">WARN</text>
+  <text x="498" y="302" class="bodym" style="fill:#e2e8f0">kept + flagged</text>
+  <text x="442" y="328" class="note" style="fill:#94a3b8">thresholds in config</text>
+
+  <!-- QUARANTINE -->
+  <rect x="406" y="492" width="208" height="130" rx="10" fill="#fffbeb" stroke="#fde68a"/>
+  <text x="422" y="518" class="zone" fill="#b45309">QUARANTINE</text>
+  <text x="422" y="536" class="path mono">data/quarantine/</text>
+  <text x="422" y="560" class="bodym mono" style="fill:#0f172a">rows/…/rejected.parquet</text>
+  <text x="422" y="575" class="note">one reject_reason per row</text>
+  <text x="422" y="596" class="bodym mono" style="fill:#0f172a">batches/{batch_id}.json</text>
+  <text x="422" y="611" class="note">report for a blocked batch</text>
+
+  <!-- TRUSTED -->
+  <rect x="626" y="92" width="196" height="376" rx="10" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="642" y="118" class="zone" fill="#1d4ed8">TRUSTED</text>
+  <text x="642" y="136" class="path mono">data/trusted/trips/</text>
+
+  <rect x="638" y="150" width="172" height="84" rx="8" class="card" style="stroke:#dbeafe"/>
+  <text x="650" y="172" class="ctm mono">TransformBatch</text>
+  <text x="650" y="192" class="body">map column names</text>
+  <text x="650" y="208" class="body">cast location IDs</text>
+  <text x="650" y="224" class="body">LEFT JOIN zone lookup</text>
+
+  <line x1="724" y1="235" x2="724" y2="247" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#arrow-sm)"/>
+
+  <rect x="638" y="248" width="172" height="92" rx="8" class="card" style="stroke:#dbeafe"/>
+  <text x="650" y="270" class="ct">Partition per batch</text>
+  <text x="650" y="290" class="bodym mono">service_type=…/</text>
+  <text x="650" y="305" class="bodym mono">pickup_month=…/</text>
+  <text x="650" y="326" class="body">staging, then replace</text>
+
+  <line x1="724" y1="341" x2="724" y2="353" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#arrow-sm)"/>
+
+  <rect x="638" y="354" width="172" height="70" rx="8" class="card" style="stroke:#dbeafe"/>
+  <text x="650" y="376" class="ctm mono">VerifyBatch</text>
+  <text x="650" y="396" class="body">re-read the written file</text>
+  <text x="650" y="412" class="bodym mono">→ _SUCCESS.json</text>
+
+  <text x="642" y="450" class="bodym mono" style="fill:#1d4ed8;font-weight:600">149,655,303 valid rows</text>
+
+  <!-- CURATED -->
+  <rect x="856" y="92" width="186" height="376" rx="10" fill="#ecfdf5" stroke="#a7f3d0"/>
+  <text x="872" y="118" class="zone" fill="#047857">CURATED</text>
+  <text x="872" y="136" class="path mono">data/curated/</text>
+
+  <rect x="868" y="150" width="162" height="56" rx="8" class="card" style="stroke:#d1fae5"/>
+  <text x="880" y="172" class="ctm mono">monthly_trip_counts</text>
+  <text x="880" y="192" class="body">service × month · 24 rows</text>
+
+  <rect x="868" y="218" width="162" height="56" rx="8" class="card" style="stroke:#d1fae5"/>
+  <text x="880" y="240" class="ctm mono">trips_by_borough</text>
+  <text x="880" y="260" class="body">× borough · 184 rows</text>
+
+  <rect x="868" y="286" width="162" height="88" rx="8" class="card" style="stroke:#d1fae5"/>
+  <text x="880" y="308" class="ctm mono">VerifyRun</text>
+  <text x="880" y="328" class="body">raw = valid + rejected</text>
+  <text x="880" y="344" class="body">curated = trusted</text>
+  <text x="880" y="360" class="body" style="fill:#047857;font-weight:700">S1 baseline: MATCH</text>
+
+  <text x="872" y="432" class="note">reads only batches with</text>
+  <text x="872" y="448" class="note">a _SUCCESS marker</text>
+
+  <!-- OUTPUTS -->
+  <rect x="1076" y="92" width="212" height="376" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="1092" y="118" class="zone" fill="#475569">OUTPUTS</text>
+  <text x="1092" y="136" class="path mono">outputs/</text>
+
+  <rect x="1088" y="150" width="188" height="70" rx="8" fill="#f5f3ff" stroke="#ddd6fe"/>
+  <text x="1100" y="168" class="label" style="fill:#7c3aed">ANSWER</text>
+  <text x="1100" y="190" style="font-size:15px;font-weight:700;fill:#4c1d95">High Volume FHV</text>
+  <text x="1100" y="208" class="body">120,864,668 trips · 80.76%</text>
+
+  <rect x="1088" y="232" width="188" height="118" rx="8" class="card"/>
+  <text x="1100" y="250" class="label">REPORTS</text>
+  <text x="1100" y="270" class="bodym mono">answer.md</text>
+  <text x="1100" y="285" class="bodym mono">trips_by_service.png</text>
+  <text x="1100" y="300" class="bodym mono">service_summary.csv</text>
+  <text x="1100" y="315" class="bodym mono">monthly_trip_counts.csv</text>
+  <text x="1100" y="330" class="bodym mono">trips_by_borough.csv</text>
+  <text x="1100" y="345" class="bodym mono">sample_trusted_trips.csv</text>
+
+  <rect x="1088" y="360" width="188" height="88" rx="8" class="card"/>
+  <text x="1100" y="378" class="label">CHECKS</text>
+  <text x="1100" y="398" class="bodym mono">quality_report.csv</text>
+  <text x="1100" y="413" class="bodym mono">verify_run.json</text>
+  <text x="1100" y="428" class="bodym mono">run_history.csv</text>
+  <text x="1100" y="443" class="bodym mono">status.txt</text>
+
+  <!-- main flow -->
+  <line x1="192" y1="260" x2="225" y2="260" class="flow" marker-end="url(#arrow)"/>
+  <line x1="394" y1="260" x2="427" y2="260" class="flow" marker-end="url(#arrow)"/>
+  <line x1="592" y1="260" x2="625" y2="260" class="flow" marker-end="url(#arrow)"/>
+  <text x="609" y="252" class="note" text-anchor="middle">pass</text>
+  <line x1="822" y1="260" x2="855" y2="260" class="flow" marker-end="url(#arrow)"/>
+  <line x1="1042" y1="260" x2="1075" y2="260" class="flow" marker-end="url(#arrow)"/>
+
+  <line x1="510" y1="342" x2="510" y2="491" class="flow" marker-end="url(#arrow)"/>
+  <text x="520" y="412" style="font-size:11px;font-weight:700;fill:#b45309">493 rows</text>
+  <text x="520" y="428" class="note" style="fill:#b45309">0 batches blocked</text>
+
+  <!-- state bus -->
+  <line x1="310" y1="468" x2="310" y2="656" class="bus"/>
+  <line x1="510" y1="622" x2="510" y2="656" class="bus"/>
+  <line x1="724" y1="468" x2="724" y2="656" class="bus"/>
+  <line x1="949" y1="468" x2="949" y2="656" class="bus"/>
+  <line x1="1182" y1="468" x2="1182" y2="656" class="bus"/>
+
+  <rect x="32" y="640" width="1256" height="76" rx="10" fill="#ffffff" stroke="#94a3b8" stroke-dasharray="4 4"/>
+  <text x="48" y="664" class="zone" fill="#475569">STATE &amp; EVIDENCE</text>
+  <text x="48" y="682" class="note">CheckBatch reads these</text>
+  <text x="48" y="697" class="note">before touching a batch</text>
+
+  <rect x="242" y="656" width="136" height="24" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="310" y="672" class="bodym mono" text-anchor="middle" style="fill:#0f172a">state/manifest.json</text>
+  <text x="310" y="701" class="note" text-anchor="middle">downloads and checksums</text>
+
+  <rect x="423" y="656" width="174" height="24" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="510" y="672" class="bodym mono" text-anchor="middle" style="fill:#0f172a">state/batch_history.jsonl</text>
+  <text x="510" y="701" class="note" text-anchor="middle">outcome of every batch</text>
+
+  <rect x="637" y="656" width="174" height="24" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="724" y="672" class="bodym mono" text-anchor="middle" style="fill:#0f172a">processed/…/_SUCCESS.json</text>
+  <text x="724" y="701" class="note" text-anchor="middle">batch finished and verified</text>
+
+  <rect x="888" y="656" width="123" height="24" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="949" y="672" class="bodym mono" text-anchor="middle" style="fill:#0f172a">logs/run_&lt;id&gt;.log</text>
+  <text x="949" y="701" class="note" text-anchor="middle">state transitions</text>
+
+  <rect x="1101" y="656" width="162" height="24" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="1182" y="672" class="bodym mono" text-anchor="middle" style="fill:#0f172a">outputs/run_history.csv</text>
+  <text x="1182" y="701" class="note" text-anchor="middle">one row per run</text>
+<metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYToxOGZkMTgwYS1hNDU2LTQ4YzgtODYzZi1mY2RhMWY5NjFkM2UAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaGi/A0E2y6wwJ59Ay8H1/HwAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo2OWQxMzZhNS05ZDhhLTRlNDMtOWY0NS1iMGM5MjU2Y2NkNWJscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoxGUkFE9KnvNtcjopmSGL/AAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggSLrmkpbdGxJKS2wnP9D7kMOMLYGFgaMi/uvByM2ywvikZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaA5saDOqvK5uFT4gZkFQoAAAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYIHOdNwl2YdBP3Z1RrGVMGQHo2z030AdsrFVolGJwHaRRZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GTV8Zmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjE4ZmQxODBhLWE0NTYtNDhjOC04NjNmLWZjZGExZjk2MWQzZS9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjNiYTVlZTBkLTFjNzItNDc5NS1iNWYyLWI1NTRmYjI2NGM4NHJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCBIuuaSlt0bEkpLbCc/0PuQw4wtgYWBoyL+68HIzbLC+KJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggbAsGrIOYpEpi8ix1QYRpPTkM8FQzGFdt5tV+b+3B7B+iY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFgg0e1FqU+w+GnxWhdS1SeBS6iNc+ytxIjCSAXRjATTFGt0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQIMxuoIaC0K/PNXbSS6MUiE6noskwXO4zWmbx4ZTvTM84NXRtwNsEknAcyj6dUDauCuMCqTykv0qicCJUFjfaSQ=</c2pa:manifest></metadata></svg>
