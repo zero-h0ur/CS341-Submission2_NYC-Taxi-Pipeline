@@ -4,6 +4,8 @@
 
 [![Tests](https://github.com/zero-h0ur/CS341-Submission2_NYC-Taxi-Pipeline/actions/workflows/tests.yml/badge.svg)](https://github.com/zero-h0ur/CS341-Submission2_NYC-Taxi-Pipeline/actions/workflows/tests.yml)
 
+**สารบัญ:** [คำตอบ](#คำถามและคำตอบ) · [ข้อมูลที่ใช้](#ข้อมูลที่ใช้) · [Pipeline](#pipeline) · [โครงสร้าง repo](#โครงสร้าง-repository) · [ติดตั้งและรัน](#ติดตั้งและรัน) · [Data quality](#data-quality-และผลจริง) · [ผลลัพธ์](#ผลลัพธ์และการตรวจสอบ) · [หลักฐานรันซ้ำ](#หลักฐานรันซ้ำและอัปเดต) · [Tests และ CI](#tests-และ-ci) · [การตัดสินใจ](#การตัดสินใจในการออกแบบ) · [เทียบกับ AWS](#เทียบกับแนวคิด-aws-ในวิชา) · [S1 → S2](#s1-พัฒนาเป็น-s2-อย่างไร) · [ข้อจำกัด](#ข้อจำกัด) · [Reflection](#learning-reflection) · [การใช้ AI](#การใช้-ai-และการตรวจสอบ)
+
 ## คำถามและคำตอบ
 
 **Which taxi type was the most used in the first half of 2024?**
@@ -22,7 +24,11 @@
 
 ตัวเลขมาจาก [service_summary.csv](outputs/service_summary.csv), [quality_report.csv](outputs/quality_report.csv) และ [verify_run.json](outputs/verify_run.json) ซึ่งเทียบทั้ง raw และ valid counts กับ S1 ได้ `MATCH` ทุกประเภท
 
-![Valid trip records by service](outputs/trips_by_service.png)
+![High Volume FHV มี valid trips มากที่สุด 80.8% ของทั้งหมด](outputs/trips_by_service.png)
+
+แยกดูรายเดือนแล้ว FHVHV ก็ยังมากที่สุดทุกเดือน สัดส่วนอยู่ระหว่าง 79.7% ถึง 82.0% คำตอบจึงไม่ได้มาจากเดือนใดเดือนหนึ่ง
+
+![สัดส่วนของ FHVHV ในแต่ละเดือน](outputs/share_by_month.png)
 
 [คำตอบฉบับเต็ม](outputs/answer.md)
 
@@ -64,18 +70,22 @@ taxi_pipeline/
   state.py                 marker, audit history, run log, status
   report.py                analysis, chart, sample, evidence snapshots
 scripts/verify_reruns.py   C–D experiment and evidence report
+scripts/demo_blocked_batches.py
+                           E: broken files made from a real raw file
 tests/                    generated fixtures and HTTP simulation
 .github/workflows/        GitHub Actions tests
-docs/                     diagram, data contract, evidence results
+docs/                     data contract, pipeline notes, evidence results
+docs/images/              pipeline overview and batch lifecycle diagrams
 outputs/                  selected results from actual runs
-evidence/                 A–D snapshots, logs, manifests, test and CI results
+evidence/                 A–E snapshots, logs, manifests, test and CI results
+submission1/              S1 notebook used as the baseline
 ```
 
 `data/`, `state/` และ `logs/` เป็นข้อมูลบนเครื่องที่อยู่ใน `.gitignore` ผมเก็บตัวอย่างและหลักฐานที่เลือกแล้วใน `outputs/` และ `evidence/`
 
 ## ติดตั้งและรัน
 
-ใช้ Python 3.10 ขึ้นไปบน macOS หรือ Linux กลไก run lock ใช้ `fcntl` ผลบนเครื่องผมใช้ Python 3.13.13, DuckDB 1.4.2, pandas 2.3.3 และ PyArrow 22.0.0 ตาม [requirements.txt](requirements.txt)
+ใช้ Python 3.10 ขึ้นไป รันได้ทั้ง macOS, Linux และ Windows (run lock ใช้ `fcntl` หรือ `msvcrt` ตาม OS) ผลบนเครื่องผมใช้ Python 3.13.13, DuckDB 1.4.2, pandas 2.3.3 และ PyArrow 22.0.0 ตาม [requirements.txt](requirements.txt)
 
 ```bash
 git clone https://github.com/zero-h0ur/CS341-Submission2_NYC-Taxi-Pipeline.git
@@ -84,6 +94,18 @@ python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --only-binary=:all: -r requirements.txt
 python -m taxi_pipeline config
+python -m taxi_pipeline run --start 2024-01 --end 2024-06
+python -m taxi_pipeline status
+```
+
+บน Windows ใช้ PowerShell:
+
+```powershell
+git clone https://github.com/zero-h0ur/CS341-Submission2_NYC-Taxi-Pipeline.git
+cd CS341-Submission2_NYC-Taxi-Pipeline
+py -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install --only-binary=:all: -r requirements.txt
 python -m taxi_pipeline run --start 2024-01 --end 2024-06
 python -m taxi_pipeline status
 ```
@@ -132,6 +154,8 @@ Flags ซ้อนกันได้จึงนำแต่ละแถวม�
 | [monthly_trip_counts.csv](outputs/monthly_trip_counts.csv) | service–month, จำนวน valid trips; ครบ 24 แถว |
 | [trips_by_borough.csv](outputs/trips_by_borough.csv) | service–month–pickup borough รวม Unknown |
 | [service_summary.csv](outputs/service_summary.csv) | รวมหกเดือนและคำนวณสัดส่วน |
+| [trips_by_service.png](outputs/trips_by_service.png) | กราฟยอดรวมราย service |
+| [share_by_month.png](outputs/share_by_month.png) | สัดส่วนของบริการอันดับหนึ่งในแต่ละเดือน |
 | [sample_trusted_trips.csv](outputs/sample_trusted_trips.csv) | ตัวอย่าง 1,000 trips จากแต่ละ batch, 14 คอลัมน์ |
 | [quality_report.csv](outputs/quality_report.csv) | ผล gate, reject และ warning ราย batch |
 | [verify_run.json](outputs/verify_run.json) | ยอด raw/trusted/curated, baseline และ artifact SHA-256 |
@@ -146,7 +170,7 @@ VerifyBatch ตรวจข้อมูลหลังเขียนก่อ�
 
 ## หลักฐานรันซ้ำและอัปเดต
 
-![Batch lifecycle และผลของรัน A–D](docs/images/batch-lifecycle.svg)
+![Batch lifecycle และผลของรัน A–E](docs/images/batch-lifecycle.svg)
 
 [ผล A–D พร้อมเวลาและจำนวน batch จริง](docs/rerun_evidence.md)
 
@@ -154,12 +178,28 @@ VerifyBatch ตรวจข้อมูลหลังเขียนก่อ�
 - B: ขยายถึงมิถุนายน โดยข้าม batch ที่สำเร็จแล้ว
 - C: รันช่วงหกเดือนเดิมซ้ำและเทียบ SHA ของตารางวิเคราะห์กับ B
 - D: ลบเฉพาะ marker ของ Green มีนาคม แล้วตรวจจำนวนแถวก่อน/หลังและ SHA ของตารางวิเคราะห์
+- E: ทำไฟล์เสียสองแบบจากไฟล์จริง `green_2024-03` แล้วรันแบบ `--validate-only` ใน workspace แยก (ดูด้านล่าง)
 
 ```bash
 python -m scripts.verify_reruns
 ```
 
 คำสั่งนี้ใช้หลังมี snapshot A–B และ trusted ครบหกเดือนแล้ว เก็บ C–D และรายงานจากค่าที่รันจริง; หากมี C–D ที่ผ่านแล้วจะใช้หลักฐานเดิม
+
+### E: ไฟล์เสียต้องไม่ผ่าน gate
+
+A–D ไม่มี batch ไหนโดน BLOCK เพราะข้อมูลจริงทั้ง 24 ไฟล์ผ่านเกณฑ์ ผมจึงทำ E เพื่อดูว่า gate หยุดไฟล์เสียได้จริงกับข้อมูล TLC ไม่ใช่แค่ใน fixture
+
+| Batch | ไฟล์ที่ใส่เข้าไป | ผล | เหตุผลจาก gate |
+|---|---|---|---|
+| green_2024-04 | ไฟล์มีนาคมที่ตั้งชื่อเป็นเมษายน | QUARANTINED | pickup นอกเดือน 57,456 จาก 57,457 แถว |
+| green_2024-05 | ไฟล์มีนาคมที่ไม่มี `lpep_dropoff_datetime` | QUARANTINED | `missing_columns` |
+
+```bash
+python -m scripts.demo_blocked_batches
+```
+
+สคริปต์สร้าง workspace ที่ `data/_demo/run_E` แยก config, state และ outputs ของตัวเอง จึงไม่โหลดไฟล์ใหม่และไม่แตะ trusted หรือ history ของโปรเจกต์จริง จำนวนบรรทัดใน `state/batch_history.jsonl` ก่อนและหลังรันถูกบันทึกไว้ใน [run_summary.json](evidence/E/run_summary.json) พร้อม [quality report](evidence/E/quality_report.csv), [log](evidence/E/run.log) และรายงาน quarantine ของ [green_2024-04](evidence/E/quarantine_green_2024-04.json) กับ [green_2024-05](evidence/E/quarantine_green_2024-05.json)
 
 [Batch audit trail](evidence/batch_history.jsonl), [source manifest](evidence/source_manifest.json) และ [การทดลอง marker หายใน Phase 3](evidence/phase3_marker_loss.json)
 
@@ -169,11 +209,11 @@ python -m scripts.verify_reruns
 python -m pytest -q --junitxml=evidence/pytest_results.xml
 ```
 
-ผลบนเครื่องผมผ่าน 28 tests ตาม [JUnit report](evidence/pytest_results.xml) Tests สร้าง Parquet/CSV ใน `tmp_path` และจำลอง HTTP โดยบล็อก HTTP จริง ครอบคลุม rule counts, mapping, BLOCK, ขอบเขต threshold, retry, source/reference เปลี่ยน, marker หาย, partial failure, baseline mismatch และ path symlink
+ผลบนเครื่องผมผ่าน 31 tests ตาม [JUnit report](evidence/pytest_results.xml) Tests สร้าง Parquet/CSV ใน `tmp_path` และจำลอง HTTP โดยบล็อก HTTP จริง ครอบคลุม rule counts, mapping, BLOCK, ขอบเขต threshold, retry, source/reference เปลี่ยน, marker หาย, partial failure, baseline mismatch, path symlink และ run lock ทั้งแบบ macOS/Linux และ Windows
 
-[GitHub Actions ที่ผ่านบน Python 3.10 และ 3.13](https://github.com/zero-h0ur/CS341-Submission2_NYC-Taxi-Pipeline/actions/runs/43737254249), [CI snapshot](evidence/ci_run.json)
+[GitHub Actions](https://github.com/zero-h0ur/CS341-Submission2_NYC-Taxi-Pipeline/actions/workflows/tests.yml) รันทุก push บน Ubuntu (Python 3.10, 3.13) และ Windows (Python 3.13) ผลรันที่บันทึกไว้ก่อนเพิ่ม Windows อยู่ใน [CI snapshot](evidence/ci_run.json)
 
-CI ตรวจพฤติกรรมด้วย fixture ส่วนหลักฐาน A–D ตรวจผลกับข้อมูล TLC จริง
+CI ตรวจพฤติกรรมด้วย fixture ส่วนหลักฐาน A–E ตรวจผลกับข้อมูล TLC จริง
 
 ## การตัดสินใจในการออกแบบ
 
@@ -197,6 +237,8 @@ CI ตรวจพฤติกรรมด้วย fixture ส่วนหล�
 
 ## S1 พัฒนาเป็น S2 อย่างไร
 
+Notebook ของ Submission 1 ที่ใช้เป็น baseline อยู่ใน [submission1/](submission1/MissionB_Submission1_6709650458.ipynb) ตัวเลข raw และ valid ของ S2 ตรงกับ output ใน notebook นั้นทุกประเภท
+
 | ประเด็น | S1 | S2 |
 |---|---|---|
 | การรัน | Notebook ใน Colab | Python CLI แยกโมดูล |
@@ -206,7 +248,7 @@ CI ตรวจพฤติกรรมด้วย fixture ส่วนหล�
 | รันซ้ำ | รัน notebook ใหม่ | checksum + marker + replace partition |
 | Quality | counts และ assertions ใน notebook | gate ที่เปลี่ยนทิศทาง workflow พร้อม quarantine |
 | Traceability | URL, notebook outputs, quality table | เพิ่ม run ID, marker, history, logs และ artifact hashes |
-| การทดสอบ | ตรวจผลใน notebook | fixture tests, CI และ A–D บนข้อมูลจริง |
+| การทดสอบ | ตรวจผลใน notebook | fixture tests, CI และ A–E บนข้อมูลจริง |
 | Metric | valid trip records | คงเดิมและตรวจ baseline ได้ MATCH |
 
 ## ข้อจำกัด
@@ -222,7 +264,7 @@ CI ตรวจพฤติกรรมด้วย fixture ส่วนหล�
 
 ## Learning reflection
 
-งาน Submission 2 ทำให้ผมเข้าใจการเอา Submission 1 มาทำให้เป็นระบบที่รันซ้ำและตรวจสอบย้อนกลับได้ โดยเริ่มจากการเก็บ raw ไว้เพื่อย้อนตรวจข้อมูลต้นทางและนำกลับมาประมวลผลใหม่เมื่อมีข้อผิดพลาด ผมแยก trusted สำหรับข้อมูลที่ผ่านกติกาและแปลงเป็นรูปแบบเดียวกัน โดยเก็บแถวที่ไม่ผ่านแยกไว้ใน quarantine ส่วน curated เป็นการนำ valid trips ทั้งหมดมาสรุปให้อยู่ในรูปที่ใช้ตอบคำถามได้ ผมเข้าใจว่า marker ช่วยตรวจว่า batch เคยทำสำเร็จแล้วและข้อมูลยังเป็นเวอร์ชันเดิมหรือไม่ เพื่อข้ามงานที่ทำแล้วได้ เมื่อต้องประมวลผล batch เดิมใหม่ การ replace partition จะช่วยไม่ให้ข้อมูลเดิมถูกเพิ่มซ้ำครับ
+ตอนทำ Submission 1 การรันซ้ำคือแค่เปิด Colab notebook แล้วรันใหม่ ถ้าไฟล์ถูกต้องและ resource ครบก็จะได้ผลลัพธ์เหมือนเดิม แต่พอออกแบบเป็น pipeline ที่แยกเป็น batch ผมต้องคิดว่าจะรู้ได้อย่างไรว่า batch ไหน process ไปแล้ว เพราะ pipeline ถูกออกแบบมาให้รันซ้ำ ถ้าไม่มีตัวบอกสถานะ มันจะกลับไปทำงานเดิมและเพิ่มข้อมูลซ้ำเข้าไปในระบบ ผมจึงใช้ success marker คู่กับการ replace ทั้ง partition แทนการ append และตอนลอง D ที่ลบ marker ของ green_2024-03 แล้วจำนวนแถวยังเป็น 57,447 เท่าเดิม ก็ทำให้เห็นว่าถึง marker จะหาย ข้อมูลก็ไม่ซ้ำ อีกเรื่องที่ได้เรียนรู้คือคำสั่งที่รันผ่านไม่ได้แปลว่าข้อมูลถูก ผมจึงให้ VerifyRun เทียบยอดกับ S1 ทุกครั้งที่รันครบหกเดือน และเมื่อเจอ Unknown location กว่า 6.4 ล้านแถวใน FHV ผมเลือกติด flag แทนการลบ เพราะ metric ใช้แค่เวลา ถ้ามีเวลาเพิ่ม ผมอยากลองเก็บ trusted เป็น Iceberg เพื่อให้แก้ข้อมูลย้อนหลังได้โดยยังเห็นเวอร์ชันเก่า
 
 ## การใช้ AI และการตรวจสอบ
 
