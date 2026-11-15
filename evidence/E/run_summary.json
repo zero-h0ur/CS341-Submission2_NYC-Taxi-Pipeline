@@ -1,0 +1,30 @@
+{
+  "run_id": "20261115T182502095571Z_7f57b42c",
+  "mode": "validate",
+  "run_status": "FAILED",
+  "source_file": "data/raw/green/green_tripdata_2024-03.parquet",
+  "source_sha256": "43dedd66dd556acfc38da679a174b6adc32e01dd6dccad14bdfdf1521a14abed",
+  "workspace": "data/_demo/run_E",
+  "project_batch_history_lines": {
+    "before": 111,
+    "after": 111
+  },
+  "batches": [
+    {
+      "batch_id": "green_2024-04",
+      "case": "March file uploaded as April",
+      "status": "QUARANTINED",
+      "block_reasons": "outside_month_ratio_exceeded;valid_ratio_below_minimum",
+      "raw_rows": 57457,
+      "outside_month_ratio": 0.999983
+    },
+    {
+      "batch_id": "green_2024-05",
+      "case": "lpep_dropoff_datetime column missing",
+      "status": "QUARANTINED",
+      "block_reasons": "missing_columns:lpep_dropoff_datetime",
+      "raw_rows": 57457,
+      "outside_month_ratio": null
+    }
+  ]
+}
